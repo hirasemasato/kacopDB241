@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+location.href = '/X003_index' ;
+}
+function cmd_update(){
+    location.href = '/X003_update/{{ X003.X003ID }}' ;
+}
+</script>
+
+<h2>[X003_LogIn][詳細]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+<input type='button' name='link' value='編集' onclick='cmd_update()'>
+
+<br>
+
+<table border=1>
+    <tr>
+        <th>X003ID</th>
+        <td>{{ X003.X003ID }}</td>
+    </tr>
+    <tr>
+        <th>日付</th>
+        <td>{{ X003.日付 }}</td>
+    </tr>
+    <tr>
+        <th>PCID</th>
+        <td>{{ X003.PCID }}</td>
+    </tr>
+    <tr>
+        <th>UserName</th>
+        <td>{{ X003.UserName }}</td>
+    </tr>
+    <tr>
+        <th>Version</th>
+        <td>{{ X003.Version }}</td>
+    </tr>
+    <tr>
+        <th>KK</th>
+        <td>{{ X003.KK }}</td>
+    </tr>
+    <tr>
+        <th>SV</th>
+        <td>{{ X003.SV }}</td>
+    </tr>
+</table>
+
+{% endblock %}
+

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+
+thead, tbody {
+display: block;
+}
+
+tbody {
+overflow: scroll;
+height: 600px;
+}
+
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+padding: 5px;
+}
+
+tr:hover {
+background: steelblue none;
+color: white;
+}
+
+td:hover {
+background: steelblue none;
+color: white;
+padding: 5px;
+}
+
+.col000 {width: 500px;}
+.col001 {width: 500px;}
+.col002 {width: 100px;}
+.col003 {width: 500px;}
+.col004 {width: 500px;}
+.col005 {width: 100px;}
+.col006 {width: 100px;}
+
+</style>
+<script>
+function cmd_return(){
+location.href = '/' ;
+}
+function cmd_insert(){
+location.href = '/X003_insert' ;
+}
+function import_csv(){
+location.href = '/X003_importcsv' ;
+}
+function output_json(){
+location.href = '/X003_outputjson' ;
+}
+</script>
+
+<h2>[X003_LogIn]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+<input type='button' name='link' value='新規' onclick='cmd_insert()'>
+<input type='button' name='link' value='csv入力' onclick='import_csv()'>
+<input type='button' name='link' value='json出力' onclick='output_json()'>
+<br>
+
+<table border=1>
+    <thead>
+    <tr>
+        <th class='col000'>X003ID</th>
+        <th class='col001'>日付</th>
+        <th class='col002'>PCID</th>
+        <th class='col003'>UserName</th>
+        <th class='col004'>Version</th>
+        <th class='col005'>KK</th>
+        <th class='col006'>SV</th>
+    </tr>
+    </thead>
+        <tbody>
+        {% for row in rows %}
+        <tr onClick='location.href="/X003_detail/{{ row.X003ID }}"'>
+            <td class='col000'> {{ row.X003ID }}</td>
+            <td class='col001'> {{ row.日付 }}</td>
+            <td class='col002'> {{ row.PCID }}</td>
+            <td class='col003'> {{ row.UserName }}</td>
+            <td class='col004'> {{ row.Version }}</td>
+            <td class='col005'> {{ row.KK }}</td>
+            <td class='col006'> {{ row.SV }}</td>
+        </tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% endblock %}
+

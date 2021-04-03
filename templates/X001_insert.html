@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+history.back();
+}
+</script>
+
+<h2>[X001_Lock登録][新規]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+
+<div class='form'>
+    <form action='/X001_insert' method='POST'>
+
+        <table border=1>
+            <tr>
+                <th><label for='X001ID'>X001ID</label></th>
+                <td><input type='text' name='X001ID'></td>
+            </tr>
+            <tr>
+                <th><label for='日付'>日付</label></th>
+                <td><input type='text' name='日付'></td>
+            </tr>
+            <tr>
+                <th><label for='Layer'>Layer</label></th>
+                <td><input type='text' name='Layer'></td>
+            </tr>
+            <tr>
+                <th><label for='TableCode'>TableCode</label></th>
+                <td><input type='text' name='TableCode'></td>
+            </tr>
+            <tr>
+                <th><label for='RecordID'>RecordID</label></th>
+                <td><input type='text' name='RecordID'></td>
+            </tr>
+            <tr>
+                <th><label for='PCID'>PCID</label></th>
+                <td><input type='text' name='PCID'></td>
+            </tr>
+            <tr>
+                <th><label for='UserName'>UserName</label></th>
+                <td><input type='text' name='UserName'></td>
+            </tr>
+            <tr>
+                <th><label for='KK'>KK</label></th>
+                <td><input type='text' name='KK'></td>
+            </tr>
+            <tr>
+                <th><label for='SV'>SV</label></th>
+                <td><input type='text' name='SV'></td>
+            </tr>
+        </table>
+
+        <input type='submit' value='送信'>
+    </form>
+</div>
+
+{% endblock %}
+

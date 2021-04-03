@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+location.href = '/X001_index' ;
+}
+function cmd_update(){
+    location.href = '/X001_update/{{ X001.X001ID }}' ;
+}
+</script>
+
+<h2>[X001_Lock][詳細]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+<input type='button' name='link' value='編集' onclick='cmd_update()'>
+
+<br>
+
+<table border=1>
+    <tr>
+        <th>X001ID</th>
+        <td>{{ X001.X001ID }}</td>
+    </tr>
+    <tr>
+        <th>日付</th>
+        <td>{{ X001.日付 }}</td>
+    </tr>
+    <tr>
+        <th>Layer</th>
+        <td>{{ X001.Layer }}</td>
+    </tr>
+    <tr>
+        <th>TableCode</th>
+        <td>{{ X001.TableCode }}</td>
+    </tr>
+    <tr>
+        <th>RecordID</th>
+        <td>{{ X001.RecordID }}</td>
+    </tr>
+    <tr>
+        <th>PCID</th>
+        <td>{{ X001.PCID }}</td>
+    </tr>
+    <tr>
+        <th>UserName</th>
+        <td>{{ X001.UserName }}</td>
+    </tr>
+    <tr>
+        <th>KK</th>
+        <td>{{ X001.KK }}</td>
+    </tr>
+    <tr>
+        <th>SV</th>
+        <td>{{ X001.SV }}</td>
+    </tr>
+</table>
+
+{% endblock %}
+

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+location.href = '/ZIP1_index' ;
+}
+function cmd_update(){
+    location.href = '/ZIP1_update/{{ ZIP1.県No }}' ;
+}
+</script>
+
+<h2>[ZIP1_県名][詳細]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+<input type='button' name='link' value='編集' onclick='cmd_update()'>
+
+<br>
+
+<table border=1>
+    <tr>
+        <th>県No</th>
+        <td>{{ ZIP1.県No }}</td>
+    </tr>
+    <tr>
+        <th>検索文字</th>
+        <td>{{ ZIP1.検索文字 }}</td>
+    </tr>
+    <tr>
+        <th>県名</th>
+        <td>{{ ZIP1.県名 }}</td>
+    </tr>
+    <tr>
+        <th>県名除外</th>
+        <td>{{ ZIP1.県名除外 }}</td>
+    </tr>
+    <tr>
+        <th>地価指数</th>
+        <td>{{ ZIP1.地価指数 }}</td>
+    </tr>
+</table>
+
+{% endblock %}
+

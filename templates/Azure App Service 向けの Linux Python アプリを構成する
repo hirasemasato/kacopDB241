@@ -1,0 +1,840 @@
+メイン コンテンツにスキップ
+検索
+
+
+
+Azure  App Service  Web Apps
+英語で読む
+
+検索
+タイトルでフィルター
+App Service のドキュメント
+Web Apps について
+App Service 環境について
+ホスティング オプションの比較
+ASP.NET Core
+ASP.NET
+Node.js
+PHP
+Java
+Python
+Ruby
+静的な HTML サイト
+ARM テンプレート
+カスタム コンテナー
+複数コンテナー アプリ
+App Service の概要
+2020/07/06
+
+
+Azure App Service は、Web アプリケーション、REST API、およびモバイル バックエンドをホストするための HTTP ベースのサービスです。 開発には、.NET、.NET Core、Java、Ruby、Node.js、PHP、Python のうち、お気に入りの言語をご利用いただけます。 アプリケーションの実行とスケーリングは、Windows ベースの環境と Linux ベースの環境の両方で容易に行うことができます。
+App Service は、セキュリティ、負荷分散、自動スケーリング、自動管理などの Microsoft Azure の機能を、アプリケーションに追加するだけではありません。 Azure DevOps、GitHub、Docker Hub およびその他のソースからの継続的デプロイ、パッケージ管理、ステージング環境、カスタム ドメイン、TLS/SSL 証明書など、DevOps 機能を利用することもできます。
+App Service では、使用した Azure コンピューティング リソースに応じて課金されます。 使用するコンピューティング リソースは、アプリが実行されている "App Service プラン" によって決まります。 詳細については、「Azure App Service プランの概要」を参照してください。
+App Service を使用する理由
+App Service の主な機能として、次のようなものがあります。
+複数の言語とフレームワーク - App Service では、ASP.NET、ASP.NET Core、Java、Ruby、Node.js、PHP、および Python が最高レベルでサポートされています。 また、PowerShell などのスクリプトや実行可能ファイルをバックグラウンド サービスとして実行することもできます。
+マネージド運用環境 - App Service が自動的に パッチを適用し、OS と言語フレームワークを管理します。 高品質なアプリの作成に専念し、プラットフォームにまつわる問題は Azure に任せましょう。
+コンテナー化と Docker - アプリを Docker でコンテナー化し、App Service でカスタムの Windows または Linux コンテナーをホストできます。 Docker Compose で複数コンテナー アプリを実行できます。 Docker のスキルを App Service に直接移行できます。
+DevOps の最適化 - 継続的インテグレーションと継続的デプロイを、Azure DevOps、GitHub、BitBucket、Docker Hub、または Azure Container Registry で設定できます。 テスト環境やステージング環境を介して更新を反映できます。 App Service でのアプリの管理には、Azure PowerShell またはクロスプラットフォーム コマンド ライン インターフェイス (CLI) を使用します。
+高可用性を備えたグローバルなスケール - 手動または自動で スケールアップまたは スケールアウトを実行できます。 Microsoft のグローバルなデータセンター インフラストラクチャのどこででもアプリをホストでき、App Service の SLA によって高可用性が保証されます。
+SaaS プラットフォームおよびオンプレミス データへの接続 - エンタープライズ システム (SAP など)、SaaS サービス (Salesforce など)、インターネット サービス (Facebook など) 向けに用意された 50 を超える コネクタから選択できます。 また、ハイブリッド接続と Azure Virtual Networks を利用して、オンプレミスのデータにアクセスできます。
+セキュリティとコンプライアンス - App Service は ISO、SOC、および PCI に準拠しています。 Azure Active Directory、Google、Facebook、Twitter、または Microsoft アカウントでユーザーを認証します。 IP アドレス制限を作成し、サービス ID を管理します。
+アプリケーション テンプレート - WordPress、Joomla、Drupal など、Azure Marketplace にある詳細な一覧からアプリケーション テンプレートを選択します。
+Visual Studio と Visual Studio Code の統合 - Visual Studio と Visual Studio Code の専用ツールを使用することで、作成、デプロイ、デバッグの作業を効率化することができます。
+API とモバイル機能 - App Service は、RESTful API シナリオに対してターンキー CORS サポートを提供するほか、認証、オフライン データ同期、プッシュ通知などを有効にして、モバイル アプリのシナリオを簡素化します。
+サーバーレス コード - コード スニペットまたはスクリプトをオンデマンドで実行します。その際、インフラストラクチャを明示的にプロビジョニングまたは管理する必要はありません。また、コードによって実際に使用されたコンピューティング時間のみが課金対象となります (Azure Functions に関するページを参照)。
+App Service の他に、Azure では Web サイトと Web アプリケーションをホストするために利用できるサービスも提供しています。 ほとんどの場合は、App Service が最適な方法になります。 マイクロサービス アーキテクチャの場合は、Azure Spring-Cloud サービスまたは Service Fabric を検討してください。 また、コードの実行に使用する VM をより細かく制御する必要がある場合は、Azure Virtual Machines の利用を検討してください。 これらの Azure サービスから適切なサービスを選択する方法の詳細については、「Azure App Service、Virtual Machines、Service Fabric、Cloud Services の比較」を参照してください。
+App Service on Linux
+App Service では、サポートされているアプリケーション スタック向けに Web アプリを Linux 上でネイティブにホストすることもできます。 また、カスタム Linux コンテナー (Web App for Containers とも呼ばれます) を実行することもできます。
+組み込みの言語とフレームワーク
+App Service on Linux では、さまざまな言語に固有の組み込みイメージがサポートされています。 コードをデプロイするだけで済みます。 以下の言語がサポートされています。Node.js、Java (JRE 8 と JRE 11)、PHP、Python、.NET Core、および Ruby。 az webapp list-runtimes --linux を実行して、最新の言語とサポートされているバージョンを表示します。 アプリケーションに必要なランタイムが組み込みイメージでサポートされていない場合は、カスタム コンテナーを使用してデプロイできます。
+古くなったランタイムは、ポータルの Web Apps の [作成] および [構成] ブレードから定期的に削除されます。 これらのランタイムは、管理している組織によって非推奨とされた場合や、重大な脆弱性が見つかった場合、ポータルに表示されません。 これらの選択肢は、最もうまく動作する最新のランタイムへと顧客を導くために非表示になります。
+古くなったランタイムがポータルで非表示になっても、そのバージョンを使用している既存のどのサイトも引き続き実行されます。 ランタイムが App Service プラットフォームから完全に削除される場合、Azure サブスクリプションの所有者は、削除前に電子メール通知を受け取ります。
+ポータルに表示されなくなった古いランタイム バージョンを使用して別の Web アプリを作成する必要がある場合は、自分のサイトのランタイム バージョンを取得する方法に関する手順について、言語構成ガイドを参照してください。 Azure CLI を使用すると、同じランタイムを使用して別のサイトを作成できます。 あるいは、ポータルの Web アプリ ブレードにある [テンプレートのエクスポート] ボタンを使用して、サイトの ARM テンプレートをエクスポートできます。 このテンプレートを再利用して、同じランタイムと構成で新しいサイトをデプロイできます。
+制限事項
+App Service on Linux は、共有価格レベルではサポートされていません。
+Windows と Linux のアプリを同じ App Service プランに混在させることはできません。
+従来、同じリソース グループ内に、Windows と Linux のアプリを混在させることはできませんでした。 ただし、2021 年 1 月 21 日以降に作成されたすべてのリソース グループでは、このシナリオがサポートさえます。 2021 年 1 月 21 日より前に作成されたリソース グループについては、混在するプラットフォーム デプロイを追加する機能は、近日中に Azure リージョン (国内クラウド リージョンを含む) 全体にロールアウトされます。
+Azure portal では、Linux アプリで現在動作している機能のみが表示されます。 機能が有効になると、ポータルでアクティブになります。
+組み込みイメージにデプロイされているコードとコンテンツには、Azure Storage によってサポートされる、Web コンテンツ用のストレージ ボリュームが割り当てられます。 このボリュームのディスク待ち時間は、コンテナー ファイルシステムの待ち時間よりも長く、可変です。 コンテンツ ファイルに対する高負荷の読み取り専用アクセスが必要なアプリでは、コンテンツ ボリュームではなく、コンテナー ファイルシステムにファイルを配置するカスタム コンテナー オプションを使用した方が有益な場合があります。
+次のステップ
+最初の Web アプリを作成する。
+
+
+
+メイン コンテンツにスキップ
+検索
+
+
+
+Azure  App Service  Web Apps
+英語で読む
+
+検索
+タイトルでフィルター
+App Service のドキュメント
+ASP.NET Core
+ASP.NET
+Node.js
+PHP
+Java
+Python
+Ruby
+静的な HTML サイト
+ARM テンプレート
+カスタム コンテナー
+複数コンテナー アプリ
+クイックスタート: Azure App Service on Linux を使用して Python アプリを作成する
+2020/11/10
+
+
+フレームワークの選択
+このクイック スタートでは、Azure のスケーラビリティに優れた自己適用型の Web ホスティング サービスである App Service on Linux に、Python Web アプリをデプロイします。 Mac、Linux、または Windows コンピューター上でローカル Azure コマンドライン インターフェイス (CLI) を使用して、Flask または Django のいずれかのフレームワークを使用したサンプルをデプロイします。 構成する Web アプリでは、App Service の Free レベルを使用するため、この記事の中で料金が発生することはありません。
+ ヒント
+
+Visual Studio Code の使用を希望する場合は、 Visual Studio Code App Service のクイックスタート に従ってください。
+初期環境を設定する
+アクティブなサブスクリプションが含まれる Azure アカウントを用意します。 無料でアカウントを作成できます。
+Python 3.6 以降をインストールします。
+Azure CLI 2.0.80 以降をインストールします。それを任意のシェルから使用してコマンドを実行することで、Azure リソースのプロビジョニングと構成を行います。
+ターミナル ウィンドウを開き、Python のバージョンが 3.6 以降であることを確認します。
+Bash
+PowerShell
+Cmd
+Bash
+
+コピー
+python3 --version
+Azure CLI のバージョンが 2.0.80 以降であることを確認します。
+Azure CLI
+
+コピー
+az --version
+次に CLI から Azure にサインインします。
+Azure CLI
+
+コピー
+az login
+このコマンドを実行すると、お客様の資格情報を収集するためにブラウザーが開かれます。 コマンドが終了すると、ご利用のサブスクリプションに関する情報を含んだ JSON 出力が表示されます。
+サインイン後は、Azure CLI を使用して Azure コマンドを実行して、サブスクリプション内のリソースを操作することができます。
+問題がある場合は、 お知らせください。
+サンプルを複製する
+次のコマンドを使用してサンプル リポジトリを複製し、サンプル フォルダーに移動します (git をまだインストールしていない場合は、git をインストールします)。
+terminal
+
+コピー
+git clone https://github.com/Azure-Samples/python-docs-hello-world
+このサンプルには、Azure App Service がアプリの起動時に認識するフレームワーク固有のコードが含まれています。 詳細については、「コンテナーのスタートアップ プロセス」を参照してください。
+問題がありますか。 お知らせください。
+サンプルを実行する
+python-docs-hello-world フォルダーに移動します。
+terminal
+
+コピー
+cd python-docs-hello-world
+仮想環境を作成し、依存関係をインストールします。
+Bash
+PowerShell
+Cmd
+Bash
+
+コピー
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+"[Errno 2] そのようなファイルまたはディレクトリはありません: 'requirements.txt'。" と表示された場合は、python-docs-hello-world フォルダーを開いていることを確認してください。
+開発サーバーを実行します。
+terminal
+
+コピー
+flask run
+既定では、サーバーによって、アプリのエントリ モジュールが、サンプルで使用されている app.py 内にあると想定されています
+別のモジュール名を使用する場合は、FLASK_APP 環境変数をその名前に設定します。
+エラー "Could not locate a Flask application. You did not provide the 'FLASK_APP' environment variable, and a 'wsgi.py' or 'app.py' module was not found in the current directory. (Flask アプリケーションが見つかりませんでした。"FLASK_APP" 環境変数を指定しておらず、"wsgi.py" または "app.py" モジュールが現在のディレクトリに見つかりませんでした。) が発生した場合は、サンプルが含まれている python-docs-hello-world フォルダーにいることを確認してください。
+Web ブラウザーを開き、http://localhost:5000/ のサンプル アプリに移動します。 アプリに、Hello World! というメッセージが表示されます。
+サンプル Python アプリをローカルで実行する
+
+ターミナル ウィンドウで Ctrl + C キーを押して、開発サーバーを終了します。
+問題がありますか。 お知らせください。
+サンプルのデプロイ
+az webapp up コマンドを使用して、ローカル フォルダー (python-docs-hello-world) にコードをデプロイします。
+Azure CLI
+
+コピー
+az webapp up --sku B1 --name <app-name>
+az コマンドが認識されない場合は、「初期環境を設定する」の説明に従って Azure CLI がインストールされていることを確認してください。
+webapp コマンドが認識されない場合、それはご利用の Azure CLI のバージョンが 2.0.80 以上だからです。 そうでない場合は、最新バージョンをインストールしてください。
+<app_name> を Azure 全体で一意の名前で置き換えます ("有効な文字は、a-z、0-9、および - です")。 会社名とアプリ識別子を組み合わせて使用すると、適切なパターンになります。
+--sku B1 引数により、Basic 価格レベルで Web アプリが作成され、時間単位のわずかなコストが発生します。 より高速な Premium レベルを使用するには、この引数を省略します。
+必要に応じて、引数 --location <location-name> を含めることができます。ここで、<location_name> は利用可能な Azure リージョンです。 az account list-locations コマンドを実行すると、お使いの Azure アカウントで使用可能なリージョンの一覧を取得できます。
+"Could not auto-detect the runtime stack of your app (アプリのランタイム スタックを自動検出できませんでした)" というエラーが表示された場合は、requirements.txt ファイルがある python-docs-hello-world フォルダー (Flask) または python-docs-hello-django フォルダー (Django) でコマンドを実行していることを確認してください。 (GitHub の az webapp up を使用して自動検出の問題をトラブルシューティングする方法に関するページを参照してください。)
+コマンドが完了するまでに数分かかる場合があります。 実行中には、リソース グループ、App Service プラン、およびホスティング アプリの作成、ログ記録の構成、ZIP デプロイの実行に関するメッセージが表示されます。 次に、"http://<app-name>.azurewebsites.net でアプリを起動することができます" という内容のメッセージが表示されます。これは、Azure 上のアプリの URL です。
+az webapp up コマンドの出力例
+
+問題がありますか。 まず、トラブルシューティング ガイドを参照し、それでも解決しない場合はお知らせください。
+ 注意
+
+az webapp up コマンドは、次の処理を実行します。
+既定のリソース グループを作成する。
+既定の App Service プランを作成する。
+指定された名前でアプリを作成する。
+現在の作業ディレクトリからアプリにファイルを zip してデプロイする。
+アプリの参照
+URL http://<app-name>.azurewebsites.net を使って、お使いの Web ブラウザーでデプロイされたアプリケーションを参照します。 アプリが起動するまでに 1 から 2 分かかる場合があるため、既定のアプリ ページが表示される場合は、しばらく待ってからブラウザーを更新してください。
+Python サンプル コードによって、App Service 内で、組み込みのイメージを使用して、Linux コンテナーが実行されています。
+サンプル Python アプリを Azure で実行する
+
+お疲れさまでした。 App Service に Python アプリをデプロイすることができました。
+問題がありますか。 まず、トラブルシューティング ガイドを参照し、それでも解決しない場合はお知らせください。
+更新の再デプロイ
+このセクションでは、小さなコード変更を行ってから、コードを Azure に再デプロイします。 このコード変更には、次のセクションで使用するログ出力を生成するための print ステートメントが含まれます。
+エディターで app.py を開き、次のコードに一致するように hello 関数を更新します。
+Python
+
+コピー
+def hello():
+    print("Handling request to home page.")
+    return "Hello, Azure!"
+変更を保存してから、もう一度 az webapp up コマンドを使用してアプリを再デプロイします。
+Azure CLI
+
+コピー
+az webapp up
+このコマンドでは、 .azure/config ファイルにローカルでキャッシュされている値 (アプリ名、リソース グループ、App Service プランなど) を使用します。
+デプロイが完了すると、http://<app-name>.azurewebsites.net が開かれたブラウザー ウィンドウに戻ります。 ページを最新の情報に更新すると、変更されたメッセージが表示されます。
+更新したサンプル Python アプリを Azure で実行する
+
+問題がありますか。 まず、トラブルシューティング ガイドを参照し、それでも解決しない場合はお知らせください。
+ ヒント
+
+Visual Studio Code には、Python と Azure App Service 用の強力な拡張機能が用意されています。これを使うと、App Service に Python Web アプリをデプロイするプロセスが簡単になります。 詳細については、Visual Studio Code から App Service への Python アプリのデプロイに関する記事をご覧ください。
+ログのストリーミング
+アプリ、およびそれを実行するコンテナー内から生成されたコンソール ログに、アクセスすることができます。 ログには、print ステートメントを使って生成されたすべての出力が含まれます。
+ログをストリーミングするには、az webapp log tail コマンドを実行します。
+Azure CLI
+
+コピー
+az webapp log tail
+また、az webapp up コマンドに --logs パラメーターを指定して、デプロイ時にログ ストリームを自動的に開くこともできます。
+ブラウザーでアプリを最新の情報に更新して、コンソール ログを生成します。これには、アプリに対する HTTP 要求に関するメッセージが含まれています。 すぐに出力が表示されない場合は、30 秒後に再試行してください。
+https://<app-name>.scm.azurewebsites.net/api/logs/docker で、ブラウザーからログ ファイルを検査することもできます。
+ログ ストリーミングを任意のタイミングで停止するには、ターミナルで Ctrl + C キーを押します。
+問題がありますか。 まず、トラブルシューティング ガイドを参照し、それでも解決しない場合はお知らせください。
+Azure アプリの管理
+Azure portal に移動し、お客様が作成したアプリを管理します。 [App Services] を検索して選択します。
+Azure portal で App Services に移動する
+
+使用する Azure アプリの名前を選択します。
+Azure portal で App Services の Python アプリに移動する
+
+アプリを選択すると [概要] ページが開きます。ここでは、参照、停止、開始、再開、削除のような基本的な管理タスクを行うことができます。
+Azure portal の [概要] ページで Python アプリを管理する
+
+App Service のメニューには、アプリを構成するためのさまざまなページが用意されています。
+問題がありますか。 まず、トラブルシューティング ガイドを参照し、それでも解決しない場合はお知らせください。
+リソースをクリーンアップする
+前の手順では、リソース グループ内に Azure リソースを作成しました。 リソース グループには、お客様の場所に応じて "appsvc_rg_Linux_CentralUS" のような名前が付いています。 Web アプリを実行し続けると、継続的なコストが発生します (「App Service の価格」をご覧ください)。
+今後これらのリソースが不要である場合は、次のコマンドを実行してリソース グループを削除します。
+Azure CLI
+
+コピー
+az group delete --no-wait
+このコマンドでは、 azure/config ファイルにキャッシュされているリソース グループ名を使用します。
+--no-wait 引数を使用すると、操作が完了する前にコマンドから戻ることができます。
+問題がありますか。 お知らせください。
+次のステップ
+
+
+
+
+メイン コンテンツにスキップ
+共に学ぶ - Microsoft Graph を使用してアプリを構築する: 4月 13 日と 14 日に、Microsoft Graph を使用したアプリ開発にチャンネルを合わせましょう! 参加登録 
+検索
+
+
+
+Azure  Active Directory  開発
+英語で読む
+
+検索
+タイトルでフィルター
+Microsoft ID プラットフォームのドキュメント
+Microsoft ID プラットフォームとは
+ドキュメントの最新情報
+ASP.NET
+ASP.NET Core (ユーザーのサインイン)
+ASP.NET Core (Microsoft Graph の呼び出し)
+Node.js - MSAL
+Node.js - Passport.js
+Java
+Python
+サンプル
+アプリ シナリオと認証フロー
+アプリケーションとサービス プリンシパル
+ID プラットフォームのベスト プラクティス
+アクセス許可と同意
+条件付きアクセス
+自動ユーザー プロビジョニング (SCIM)
+クイック スタート: Python Web アプリに Microsoft でサインインを追加する
+2019/09/25
+
+
+
+このクイックスタートでは、Python Web アプリケーションでユーザーをサインインし、アクセス トークンを取得して Microsoft Graph API を呼び出す方法を示すコード サンプルをダウンロードして実行します。 個人用 Microsoft アカウントまたは Azure Active Directory (Azure AD) 組織のアカウントを持つユーザーは、アプリケーションにサインインできます。
+図については、「このサンプルのしくみ」を参照してください。
+前提条件
+アクティブなサブスクリプションが含まれる Azure アカウント。 無料でアカウントを作成できます。
+Python 2.7 以降または Python 3 以降
+Flask、Flask-Session、要求
+MSAL Python
+クイック スタート アプリを登録してダウンロードする
+クイックスタート アプリケーションを開始する方法としては、[簡易] (オプション 1) と [手動] (オプション 2) の 2 つの選択肢があります。
+オプション 1: アプリを登録して自動構成を行った後、コード サンプルをダウンロードする
+Azure portal のアプリの登録クイックスタート エクスペリエンスに移動します。
+アプリケーションの名前を入力し、 [登録] を選択します。
+指示に従って新しいアプリケーションをダウンロードし、自動構成します。
+オプション 2:アプリケーションを登録し、アプリケーションとコード サンプルを手動で構成する
+手順 1:アプリケーションの登録
+アプリケーションを登録し、その登録情報をソリューションに手動で追加するには、次の手順を実行します。
+Azure portal にサインインします。
+複数のテナントにアクセスできる場合は、トップ メニューの [ディレクトリとサブスクリプション] フィルター を使用して、アプリケーションを登録するテナントを選択します。
+[管理] で [アプリの登録] > [新規登録] の順に選択します。
+アプリケーションの 名前 を入力します (例: python-webapp)。 この名前は、アプリのユーザーに表示される場合があります。また、後で変更することができます。
+[サポートされているアカウントの種類] で、 [Accounts in any organizational directory and personal Microsoft accounts](任意の組織のディレクトリ内のアカウントと個人用の Microsoft アカウント) を選択します。
+[登録] を選択します。
+後で使用するために、アプリの [概要] ページで、 [アプリケーション (クライアント) ID] の値を書き留めます。
+[管理] で、 [認証] を選択します。
+[プラットフォームの追加] > [Web] の順に選択します。
+リダイレクト URI として http://localhost:5000/getAToken を追加します。
+[構成] をクリックします。
+[管理] で [証明書とシークレット] を選択し、 [クライアント シークレット] セクションで、 [新しいクライアント シークレット] を選択します。
+キーの説明 (アプリのシークレットなど) を入力し、既定の有効期限のままにして、 [追加] を選択します。
+後で使用するために、 [クライアント シークレット] の 値 を書き留めます。
+[管理] で、 [API のアクセス許可] > [アクセス許可の追加] の順に選択します。
+[Microsoft API] タブが選択されていることを確認します。
+[よく使用される Microsoft API] セクションで、 [Microsoft Graph] を選択します。
+[委任されたアクセス許可] セクションで、適切なアクセス許可がオンになっていることを確認します: User.ReadBasic.All。 必要に応じて検索ボックスを使用します。
+[アクセス許可の追加] ボタンを選択します
+手順 2:プロジェクトのダウンロード
+コード サンプルのダウンロード
+
+手順 3: アプリケーションの構成
+ルート フォルダーに近いローカル フォルダー (例: C:\Azure-Samples) に zip ファイルを展開します。
+統合開発環境を使用する場合は、その IDE でサンプルを開きます (オプション)。
+app_config.py ファイルを開きます。このファイルはルート フォルダーにあり、次のコード スニペットに置き換えることができます。
+Python
+
+コピー
+CLIENT_ID = "Enter_the_Application_Id_here"
+CLIENT_SECRET = "Enter_the_Client_Secret_Here"
+AUTHORITY = "https://login.microsoftonline.com/Enter_the_Tenant_Name_Here"
+各値の説明:
+Enter_the_Application_Id_here - 登録したアプリケーションのアプリケーション ID。
+Enter_the_Client_Secret_Here - 登録済みアプリケーション用に [証明書とシークレット] で作成した [クライアント シークレット] です。
+Enter_the_Tenant_Name_Here - 登録したアプリケーションの ディレクトリ (テナント) ID 値です。
+手順 4:コード サンプルの実行
+MSAL Python ライブラリ、Flask フレームワーク、サーバー側のセッション管理用の Flask-Sessions、および requests を、次のように pip を使用してインストールする必要があります。
+Shell
+
+コピー
+pip install -r requirements.txt
+シェルまたはコマンド ラインから app.py を実行する:
+Shell
+
+コピー
+python app.py
+ 重要
+
+このクイック スタート アプリケーションは、クライアント シークレットを使用して、それ自体を機密クライアントとして識別します。 クライアント シークレットはプロジェクト ファイルにプレーン テキストとして追加されるため、セキュリティ上の理由から、アプリケーションを運用アプリケーションと見なす前に、クライアント シークレットの代わりに証明書を使用することをお勧めします。 証明書の使用方法の詳細については、これらの手順を参照してください。
+詳細情報
+このサンプルのしくみ
+このクイック スタートで生成されたサンプル アプリの動作の紹介
+
+MSAL の取得
+MSAL は、ユーザーをサインインさせるために使用されたり、Microsoft ID プラットフォームによって保護されている API にアクセスするためのトークンを要求するために使用されたりするライブラリです。 MSAL Python は、Pip を使用してアプリケーションに追加できます。
+Shell
+
+コピー
+pip install msal
+MSAL の初期化
+MSAL を使用するファイルの先頭に次のコードを追加すると、MSAL Python への参照を追加できます。
+Python
+
+コピー
+import msal
+ヘルプとサポート
+サポートが必要な場合、問題をレポートする場合、またはサポート オプションについて知りたい場合は、開発者向けのヘルプとサポートに関するページを参照してください。
+次のステップ
+複数のパートで構成されるシナリオ シリーズで、ユーザーのサインインを行う Web アプリの詳細について確認します。
+
+フィードバック
+フィードバックの送信と表示
+
+
+
+
+
+
+
+
+
+
+
+
+この記事では、Azure App Service で Python アプリが実行される方法、既存のアプリを Azure に移行する方法、および必要に応じて App Service の動作をカスタマイズする方法について説明します。 Python アプリは、必要なすべての pip モジュールと共にデプロイする必要があります。
+App Service デプロイ エンジンでは、Git リポジトリ (または ZIP パッケージ) のデプロイ時に自動的に仮想環境をアクティブ化し、pip install -r requirements.txt を実行します。
+このガイドでは、App Service の組み込み Linux コンテナーを使用する Python 開発者のために、主要な概念と手順を示します。 Azure App Service を使用したことがない場合は、まず Python クイックスタートと PostgreSQL を使った Python のチュートリアルに従ってください。
+構成には Azure portal と Azure CLI のいずれかを使用できます。
+Azure portal: 「Azure portal で App Service アプリを構成する」で説明されているとおり、アプリの [設定] > [構成] ページを使用します。
+Azure CLI: 2 つのオプションがあります。
+Azure Cloud Shell でコマンドを実行します。
+最新バージョンの Azure CLI をインストールしてコマンドをローカルで実行してから、az login を使用して Azure にサインインします。
+ 注意
+
+Linux は現在、App Service で Python アプリを実行するための推奨されるオプションです。 Windows オプションについては、Windows フレーバーの App Service での Python に関するページを参照してください。
+Python バージョンの構成
+Azure portal: Linux コンテナー向けに「全般設定を構成する」で説明されているとおり、 [構成] ページで [全般設定] を使用します。
+Azure CLI:
+az webapp config show を使用して現在の Python バージョンを表示します。
+Azure CLI
+
+コピー
+az webapp config show --resource-group <resource-group-name> --name <app-name> --query linuxFxVersion
+<resource-group-name> と <app-name> は、Web アプリに適した名前に置き換えます。
+az webapp config set を使用して Python バージョンを設定します
+Azure CLI
+
+コピー
+az webapp config set --resource-group <resource-group-name> --name <app-name> --linux-fx-version "PYTHON|3.7"
+az webapp list-runtimes を使用して、Azure App Service でサポートされている Python バージョンをすべて表示します。
+Azure CLI
+
+コピー
+az webapp list-runtimes --linux | grep PYTHON
+サポートされない Python バージョンを実行するには、代わりに独自のコンテナー イメージを作成します。 詳細については、カスタム Docker イメージの使用に関するページを参照してください。
+
+ビルドの自動化のカスタマイズ
+Oryx と呼ばれる App Service のビルド システムでは、Git または ZIP パッケージを使用してアプリをデプロイする際に、次のステップを実行します。
+PRE_BUILD_COMMAND 設定を指定した場合は、カスタムのビルド前スクリプトを実行します。 このスクリプトはそれ自体で、他の Python スクリプトや Node.js スクリプト、pip コマンド、npm コマンド、さらに、yarn など Node ベースのツール (例: yarn install、yarn build) を実行できます。
+pip install -r requirements.txt を実行します。 requirements.txt ファイルがプロジェクトのルート フォルダーに存在していなければなりません。 そうでないと、ビルド プロセスでエラーがレポートされます: "Could not find setup.py or requirements.txt; Not running pip install." (setup.py または requirements.txt が見つかりませんでした; pip install が実行されていません。)
+(Django アプリを示す) リポジトリのルートに manage.py がある場合は、manage.py collectstatic を実行します。 ただし、DISABLE_COLLECTSTATIC 設定が true の場合、この設定はスキップされます。
+POST_BUILD_COMMAND 設定を指定した場合は、カスタムのビルド後スクリプトを実行します。 (前述のように、このスクリプトは、他の Python スクリプトや Node.js スクリプト、pip コマンド、npm コマンド、さらに、Node ベースのツールを実行できます。)
+既定では、PRE_BUILD_COMMAND、POST_BUILD_COMMAND、DISABLE_COLLECTSTATIC の設定は空です。
+Django アプリをビルドするときに collectstatic の実行を無効にするには、DISABLE_COLLECTSTATIC 設定を true にします。
+ビルド前コマンドを実行するには、コマンド (echo Pre-build command など)、または自分のプロジェクトのルートからスクリプト ファイルへの相対パス (scripts/prebuild.sh) が含まれるように PRE_BUILD_COMMAND の設定を行います。 どのコマンドでも、プロジェクトのルート フォルダーへの相対パスを使用する必要があります。
+ビルド後コマンドを実行するには、コマンド (echo Post-build command など)、または自分のプロジェクトのルートからスクリプト ファイルへの相対パス (scripts/postbuild.sh) が含まれるように POST_BUILD_COMMAND の設定を行います。 どのコマンドでも、プロジェクトのルート フォルダーへの相対パスを使用する必要があります。
+ビルドの自動化をカスタマイズする設定の詳細については、「Oryx 構成」を参照してください。
+ビルドとデプロイのログにアクセスするには、「デプロイ ログにアクセスする」を参照してください。
+App Service で Linux の Python アプリを実行、ビルドする方法の詳細については、Oryx による Python アプリの検出とビルドに関するページを参照してください。
+ 注意
+
+PRE_BUILD_SCRIPT_PATH および POST_BUILD_SCRIPT_PATH の設定は PRE_BUILD_COMMAND および POST_BUILD_COMMAND と同一で、従来の目的でサポートされています。
+SCM_DO_BUILD_DURING_DEPLOYMENT という名前の設定に true または 1 が含まれている場合、デプロイ中に Oryx によってビルドが行われます。 この設定は、Git、Azure CLI コマンド az webapp up、Visual Studio Code を使用してデプロイする場合に true になります。
+ 注意
+
+すべてのビルド前後のスクリプトで常に相対パスを使用してください。Oryx が動作するビルド コンテナーは、アプリが動作するランタイム コンテナーとは異なるためです。 コンテナー内のアプリ プロジェクト フォルダーの正確な配置場所 (たとえば、site/wwwroot といった配置場所) は指定しないようにします。
+既存のアプリケーションを Azure に移行する
+既存の Web アプリケーションは、次のように Azure に再デプロイできます。
+ソース リポジトリ: ソース コードを GitHub などの適切なリポジトリに保持します。これにより、このプロセスの後半で継続的なデプロイを設定することができます。
+App Service が必要なパッケージを自動的にインストールできるようにするには、requirements.txt ファイルがリポジトリのルートにある必要があります。
+データベース:アプリがデータベースに依存している場合は、Azure 上に必要なリソースをプロビジョニングします。 「チュートリアル:PostgreSQL を使用して Django Web アプリをデプロイする方法のチュートリアルの、データベースの作成に関するセクションの例を参照してください。
+App Service リソース: 対象のアプリケーションをホストするためのリソース グループ、App Service プラン、および App Service Web アプリを作成します。 これは、Azure CLI コマンド az webapp up を使用してコードの初期デプロイを実行することで最も簡単に行うことができます。PostgreSQL を使用して Django Web アプリをデプロイする方法のチュートリアルの、コードのデプロイに関するセクションを参照してください。 リソース グループ、App Service プラン、および Web アプリの名前を、対象のアプリケーションにより適した名前に置き換えます。
+環境変数:対象のアプリケーションが環境変数を必要とする場合は、同等の App Service アプリケーション設定を作成します。 これらの App Service 設定は、環境変数へのアクセスに関するセクションで説明されているように、環境変数としてコードに示されます。
+たとえば、データベース接続は、多くの場合、このような設定によって管理されます。PostgreSQL を使用して Django Web アプリをデプロイする方法のチュートリアルの、データベースに接続するための変数の構成に関するセクションを参照してください。
+一般的な Django アプリの特定の設定については、「Django アプリの運用設定」を参照してください。
+アプリの起動: この記事の後半の「コンテナーのスタートアップ プロセス」セクションを参照して、App Service がアプリを実行する方法を理解します。 App Service では、既定で Gunicorn Web サーバーを使用します。このサーバーは、対象のアプリ オブジェクトまたは wsgi.py フォルダーを見つけることができる必要があります。 必要に応じて、スタートアップ コマンドをカスタマイズすることができます。
+継続的なデプロイ:「Azure App Service への継続的デプロイ」(Azure Pipelines または Kudu デプロイを使用している場合) または「GitHub Actions を使用した App Service へのデプロイ」(GitHub アクションを使用している場合) の説明に従って、継続的デプロイを設定します。
+カスタム アクション: 対象のアプリをホストする App Service コンテナー内で Django データベースの移行などのアクションを実行するには、SSH 経由でコンテナーに接続します。 Django データベースの移行を実行する例については、PostgreSQL を使用して Django Web アプリをデプロイする方法のチュートリアルの、データベースの移行の実行に関するセクションを参照してください。
+継続的デプロイを使用している場合は、前の「ビルドの自動化のカスタマイズ」で説明したように、ビルド後コマンドを使用してこれらのアクションを実行できます。
+これらの手順を完了すると、変更をソース リポジトリにコミットし、それらの更新を App Service に自動的にデプロイできるようになります。
+Django アプリの運用設定
+Azure App Service などの運用環境の場合、Django アプリは Django のデプロイ チェックリスト (djangoproject.com) に準拠する必要があります。
+次の表では、Azure に関連する運用設定について説明しています。 これらの設定は、アプリの setting.py ファイルで定義されます。
+DJANGO アプリの運用設定
+Django 設定	Azure での手順
+SECRET_KEY	「環境変数としてのアプリ設定へのアクセス」の説明のとおりに、App Service 設定の値を格納します。 また、この値は "シークレット" として Azure Key Vault に格納することもできます。
+DEBUG	値を 0 (false) にして App Service で DEBUG 設定を作成してから、その値を環境変数として読み込みます。 実際の開発環境では、値を 1 (true) にして DEBUG 環境変数を作成してください。
+ALLOWED_HOSTS	運用環境の Django では、settings.py の ALLOWED_HOSTS 配列にアプリの URL が含まれている必要があります。 この URL は、os.environ['WEBSITE_HOSTNAME'] というコードを使用して実行時に取得できます。 App Service によって、WEBSITE_HOSTNAME 環境変数がアプリの URL に自動的に設定されます。
+DATABASES	データベースに接続するための App Service の設定を定義し、それらを環境変数として読み込んで DATABASES ディクショナリを設定します。 または、値 (特にユーザー名とパスワード) を Azure Key Vault シークレットとして格納することもできます。
+Django アプリの静的ファイルを応答として返す
+Django Web アプリに静的なフロントエンド ファイルが含まれる場合はまず、Django ドキュメントの「静的ファイルの管理」に記載の手順に従います。
+次に、App Service に対して次の変更を行います。
+環境変数 (ローカル開発の場合) およびアプリ設定 (クラウドにデプロイする場合) を使用して、Django の STATIC_URL 変数と STATIC_ROOT 変数を動的に設定することを検討してください。 次に例を示します。
+Python
+
+コピー
+STATIC_URL = os.environ.get("DJANGO_STATIC_URL", "/static/")
+STATIC_ROOT = os.environ.get("DJANGO_STATIC_ROOT", "./static/")    
+ローカル環境とクラウド環境の DJANGO_STATIC_URL と DJANGO_STATIC_ROOT は、必要に応じて変更できます。 たとえば静的ファイルのビルド プロセスで、それらを django-static という名前のフォルダーに配置した場合、DJANGO_STATIC_URL を /django-static/ に設定することで既定値の使用を避けることができます。
+ビルド前のスクリプトで、静的ファイルが別のフォルダーに生成されるようになっている場合は、Django の collectstatic プロセスで検出されるように、そのフォルダーを Django の STATICFILES_DIRS 変数に追加してください。 たとえば、フロントエンド フォルダーで yarn build を実行し、静的ファイルを含んだ build/static フォルダーが yarn によって生成される場合、次のようにしてそのフォルダーを追加します。
+Python
+
+コピー
+FRONTEND_DIR = "path-to-frontend-folder" 
+STATICFILES_DIRS = [os.path.join(FRONTEND_DIR, 'build', 'static')]    
+ここでは、yarn などのビルド ツールが実行される場所のパスを構築して FRONTEND_DIR に代入しています。 ここでも、必要に応じて環境変数とアプリ設定を使用できます。
+requirements.txt ファイルに whitenoise を追加します。 Whitenoise (whitenoise.evans.io) は、運用環境の Django アプリから応答として静的ファイルを返すための作業を省力化する Python パッケージです。 具体的に言うと、Django の STATIC_ROOT 変数で指定されたフォルダーに見つかったファイルを Whitenoise が応答として返します。
+Whitenoise に関する次の行を settings.py ファイルに追加します。
+Python
+
+コピー
+STATICFILES_STORAGE = ('whitenoise.storage.CompressedManifestStaticFilesStorage')
+さらに、MIDDLEWARE リストと INSTALLED_APPS リストに Whitenoise を追加します。
+Python
+
+コピー
+MIDDLEWARE = [
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # Other values follow
+]
+
+INSTALLED_APPS = [
+    "whitenoise.runserver_nostatic",
+    # Other values follow
+]
+コンテナーの特性
+Python アプリは App Service にデプロイされると、App Service Python GitHub リポジトリで定義された Linux Docker コンテナー内で動作します。 イメージの構成は、バージョン固有のディレクトリ内で見つけることができます。
+このコンテナーには次の特性があります。
+アプリは、Gunicorn WSGI HTTP サーバーを使用して実行されます。このとき、追加の引数 --bind=0.0.0.0 --timeout 600 が使用されます。
+Gunicorn の構成の概要に関するページ (docs.gunicorn.org) で説明されているとおり、プロジェクトのルートにある gunicorn.conf.py ファイルを使用して Gunicorn の構成設定を指定できます。 また、スタートアップ コマンドをカスタマイズすることもできます。
+「Gunicorn のデプロイ」(docs.gunicorn.org) で説明されているとおり、偶発的または意図的な DDoS 攻撃から Web アプリを防御するために、Gunicorn は Nginx リバース プロキシの背後で実行されます。
+既定では、基本のコンテナー イメージには Flask Web フレームワークのみが含まれています。ただし、コンテナーは、WSGI に準拠していて Python 3.6 以上と互換性のある他のフレームワーク (Django など) をサポートしています。
+Django など、追加のパッケージをインストールするには、直接的な依存関係を指定したプロジェクトのルートに requirements.txt ファイルを作成します。 そうすることで、App Service によって、それらの依存関係がプロジェクトのデプロイ時に自動的にインストールされます。
+依存関係がインストールされるには、requirements.txt ファイルがプロジェクトのルートに "なければなりません"。 そうでないと、ビルド プロセスでエラーがレポートされます: "Could not find setup.py or requirements.txt; Not running pip install." (setup.py または requirements.txt が見つかりませんでした; pip install が実行されていません。) このエラーが発生した場合は、自分の requirements ファイルの場所を確認してください。
+App Service では、Web アプリの URL (msdocs-hello-world.azurewebsites.net など) を使用して、WEBSITE_HOSTNAME という名前の環境変数が自動的に定義されます。 また、アプリの名前 (msdocs-hello-world など) を使用して WEBSITE_SITE_NAME も定義されます。
+Node ベースのビルド ツール (yarn など) を実行できるよう、コンテナーには npm と Node.js がインストールされます。
+コンテナーのスタートアップ プロセス
+App Service on Linux コンテナーでは、起動中に次の手順が実行されます。
+カスタム スタートアップ コマンドが提供されている場合は、これを使用します。
+Django アプリの存在を確認し、検出された場合はそれための Gunicorn を起動します。
+Flask アプリの存在を確認し、検出された場合はそれための Gunicorn を起動します。
+他のアプリが見つからない場合は、コンテナーに組み込まれている既定のアプリを起動します。
+次のセクションでは、各オプションについてさらに詳しく説明します。
+Django アプリ
+Django アプリの場合、App Service によってお客様のアプリ コード内で wsgi.py という名前のファイルが検索され、次のコマンドを使用して Gunicorn が実行されます。
+Bash
+
+コピー
+# <module> is the name of the folder that contains wsgi.py
+gunicorn --bind=0.0.0.0 --timeout 600 <module>.wsgi
+スタートアップ コマンドをより細かくコントロールしたい場合、カスタム スタートアップ コマンドを使用し、<module> を wsgi.py が含まれているフォルダーの名前に置き換えます。そのモジュールがプロジェクトのルートにない場合は --chdir 引数を追加してください。 たとえば、自分のプロジェクトのルートを基準として knboard/backend/config に wsgi.py が配置されている場合は、引数 --chdir knboard/backend config.wsgi を使用します。
+運用ログを有効にするには、カスタム スタートアップ コマンドの例で示しているとおり、--access-logfile および --error-logfile パラメーターを追加します。
+Flask アプリ
+Flask の場合、App Service によって application.py または app.py という名前のファイルが検索され、Gunicorn が次のように起動されます。
+Bash
+
+コピー
+# If application.py
+gunicorn --bind=0.0.0.0 --timeout 600 application:app
+
+# If app.py
+gunicorn --bind=0.0.0.0 --timeout 600 app:app
+お客様のメイン アプリ モジュールが別のファイルに含まれている場合は、アプリ オブジェクトに別の名前を使用します。また、Gunicorn に追加の引数を指定したい場合は、カスタム スタートアップ コマンドを使用します。
+既定の動作
+カスタム コマンド、Django アプリ、または Flask アプリが App Service によって検出されない場合は、opt/defaultsite フォルダーにある既定の読み取り専用アプリ (以下の画像を参照) が実行されます。
+コードをデプロイしても既定のアプリが表示される場合は、「トラブルシューティング」の「アプリが表示されない」を参照してください。
+App Service on Linux の既定の Web ページ
+繰り返しになりますが、既定のアプリではなく、デプロイしたアプリを表示する必要がある場合は、「トラブルシューティング」の「アプリが表示されない」を参照してください。
+スタートアップ コマンドのカスタマイズ
+この記事で前に述べたように、Gunicorn の構成の概要に関するページで説明されているとおり、プロジェクトのルートにある gunicorn.conf.py ファイルを使用して Gunicorn の構成設定を指定できます。
+このような構成では十分でない場合は、スタートアップ コマンド ファイルでカスタム スタートアップ コマンドまたは複数のコマンドを指定して、コンテナーのスタートアップ動作をコントロールできます。 スタートアップ コマンド ファイルでは、startup.sh、startup.cmd、startup.txt など、任意の名前を使用することができます。
+どのコマンドでも、プロジェクトのルート フォルダーへの相対パスを使用する必要があります。
+スタートアップ コマンドまたはコマンド ファイルを指定するには:
+Azure portal: アプリの [構成] ページを選択してから、 [全般設定] を選択します。 [スタートアップ コマンド] フィールドで、自分のスタートアップ コマンドの完全なテキスト、または自分のスタートアップ コマンド ファイルの名前を入力します。 次に、 [保存] を選択して変更を適用します。 Linux コンテナー用に「全般設定を構成する」を参照してください。
+Azure CLI: --startup-file パラメーターをスタートアップ コマンドまたはファイルに設定して、az webapp config set コマンドを使用します。
+Azure CLI
+
+コピー
+az webapp config set --resource-group <resource-group-name> --name <app-name> --startup-file "<custom-command>"
+<custom-command> は、自分のスタートアップ コマンドの完全なテキスト、または自分のスタートアップ コマンド ファイルの名前に置き換えます。
+App Service では、カスタム スタートアップ コマンドまたはファイルの処理中に発生したエラーが無視されて、Django および Flask アプリが検索されることでスタートアップ プロセスが続行されます。 想定どおりの動作にならない場合は、自分のスタートアップ コマンドまたはファイルに問題がないこと、スタートアップ コマンド ファイルがアプリのコードと共に App Service にデプロイされていることを確認してください。 診断ログで詳細な情報を確認することもできます。 また、Azure portal でアプリの [問題の診断と解決] ページも確認してください。
+スタートアップ コマンドの例
+Gunicorn 引数の追加: 次の例では、Django アプリを起動するための Gunicorn コマンド ラインに --workers=4 を追加します。
+Bash
+
+コピー
+# <module-path> is the relative path to the folder that contains the module
+# that contains wsgi.py; <module> is the name of the folder containing wsgi.py.
+gunicorn --bind=0.0.0.0 --timeout 600 --workers=4 --chdir <module_path> <module>.wsgi
+詳細については、「Running Gunicorn (Gunicorn の実行)」 (docs.gunicorn.org) を参照してください。
+Django での運用ログの有効化: --access-logfile '-' および --error-logfile '-' 引数をコマンド ラインに追加します。
+Bash
+
+コピー
+# '-' for the log files means stdout for --access-logfile and stderr for --error-logfile.
+gunicorn --bind=0.0.0.0 --timeout 600 --workers=4 --chdir <module_path> <module>.wsgi --access-logfile '-' --error-logfile '-'
+これらのログは App Service ログ ストリームに表示されます。
+詳細については、Gunicorn のログに関するページ (docs.gunicorn.org) を参照してください。
+カスタムの Flask メイン モジュール: 既定では、Flask アプリのメイン モジュールは application.py か app.py であると App Service によって想定されています。 メイン モジュールに別の名前を使用する場合は、スタートアップ コマンドをカスタマイズする必要があります。 たとえば、メイン モジュールが hello.py で、そのファイルにおける Flask アプリ オブジェクトの名前が myapp である Flask アプリがある場合、コマンドは次のようになります。
+Bash
+
+コピー
+gunicorn --bind=0.0.0.0 --timeout 600 hello:myapp
+メイン モジュールがサブフォルダー (website など) に存在する場合、そのフォルダーを --chdir 引数で指定します。
+Bash
+
+コピー
+gunicorn --bind=0.0.0.0 --timeout 600 --chdir website hello:myapp
+Gunicorn 以外のサーバーの使用: 別の Web サーバー (aiohttp など) を使用する場合は、スタートアップ コマンドとして、またはスタートアップ コマンド ファイルで、適切なコマンドを使用します。
+Bash
+
+コピー
+python3.7 -m aiohttp.web -H localhost -P 8080 package.module:init_func
+環境変数としてのアプリ設定へのアクセス
+「アプリケーションの設定の構成」で説明されているとおり、アプリの設定は、お客様のアプリのためにクラウドに格納された値です。 これらの設定は、環境変数として自分のアプリのコードで利用できます。アクセスには標準の os.environ パターンを使用します。
+たとえば、DATABASE_SERVER というアプリ設定を作成したら、その設定の値は次のコードで取得します。
+Python
+
+コピー
+db_server = os.environ['DATABASE_SERVER']
+HTTPS セッションの検出
+App Service では、SSL 終了 (wikipedia.org) がネットワーク ロード バランサーで発生するため、すべての HTTPS リクエストは暗号化されていない HTTP リクエストとしてアプリに到達します。 ユーザー要求が暗号化されているかどうかをアプリ ロジックが確認する必要がある場合は、X-Forwarded-Proto ヘッダーを調べます。
+Python
+
+コピー
+if 'X-Forwarded-Proto' in request.headers and request.headers['X-Forwarded-Proto'] == 'https':
+# Do something when HTTPS is used
+一般的な Web フレームワークでは、標準のアプリ パターンで X-Forwarded-* 情報にアクセスできます。 CodeIgniter では、is_https () は既定で X_FORWARDED_PROTO の値をチェックします。
+診断ログにアクセスする
+コンテナー内から生成されたコンソール ログにアクセスできます。
+まず、次のコマンドを実行して、コンテナーのログ記録をオンにします。
+Azure CLI
+
+コピー
+
+使ってみる
+az webapp log config --name <app-name> --resource-group <resource-group-name> --docker-container-logging filesystem
+<app-name> と <resource-group-name> は、Web アプリに適した名前に置き換えます。
+コンテナーのログ記録がオンになったら、次のコマンドを実行して、ログのストリームを確認します。
+Azure CLI
+
+コピー
+
+使ってみる
+az webapp log tail --name <app-name> --resource-group <resource-group-name>
+コンソール ログがすぐに表示されない場合は、30 秒以内にもう一度確認します。
+任意のタイミングでログのストリーミングを停止するには、 Ctrl+C キーを押します。
+ブラウザーから https://<app-name>.scm.azurewebsites.net/api/logs/docker でログ ファイルを検査することもできます。
+Azure portal を使用してログにアクセスするには、アプリの左側のメニューにある [監視] > [ログ ストリーム] を選択します。
+デプロイ ログにアクセスする
+コードをデプロイすると、「ビルドの自動化のカスタマイズ」セクションで説明したビルド プロセスが App Service によって実行されます。 ビルドはそれ独自のコンテナー内で実行されるため、ビルド ログは、アプリの診断ログとは別に格納されます。
+デプロイ ログにアクセスするには、次の手順を使用します。
+Web アプリの Azure portal で、左側のメニューから [デプロイ] > [デプロイ センター (プレビュー)] を選択します。
+[ログ] タブで、最新のコミットの [コミット ID] を選択します。
+表示された [ログの詳細] ページで、"Running oryx build... (oryx のビルドを実行しています...)" の横に表示される [ログの表示] リンクを選択します。
+これらのログには、requirements.txt 内の不適切な依存関係、ビルド前またはビルド後のスクリプトのエラーなど、ビルドの問題が出力されます。 要件ファイルが厳密に requirements.txt という名前になっていない場合やプロジェクトのルート フォルダーに存在しない場合も、エラーが出力されます。
+ブラウザーで SSH セッションを開く
+コンテナーとの直接 SSH セッションを開くには、アプリが実行されている必要があります。
+ブラウザーに次の URL を貼り付け、<app-name> をお使いのアプリの名前に置き換えます。
+
+コピー
+https://<app-name>.scm.azurewebsites.net/webssh/host
+まだ認証されていない場合、接続するには Azure サブスクリプションで認証する必要があります。 認証されると、ブラウザー内シェルが表示され、コンテナー内でコマンドを実行することができます。
+SSH 接続
+
+ 注意
+
+/home ディレクトリの外部で行ったすべての変更は、コンテナー自体に格納され、アプリの再起動後には保持されません。
+ローカル コンピューターからリモート SSH セッションを開くには、「リモート シェルから SSH セッションを開く」を参照してください。
+SSH セッションへの接続に成功すると、ウィンドウ下部に "SSH CONNECTION ESTABLISHED (SSH 接続が確立されました)" というメッセージが表示されます。 "SSH_CONNECTION_CLOSED" などのエラーや、コンテナーが再起動されているというメッセージが表示される場合は、エラーが原因でアプリ コンテナーが起動できなくなっている可能性があります。 考えられる問題を調査する手順については、「トラブルシューティング」を参照してください。
+トラブルシューティング
+一般に、トラブルシューティングにおける最初の手順は、App Service 診断を使用することです。
+Web アプリの Azure portal で、左側のメニューから [問題の診断と解決] を選択します。
+[Availability and performance](可用性とパフォーマンス) を選択します。
+最も一般的な問題が表示される、 [アプリケーション ログ] 、 [Container crash](コンテナーのクラッシュ) 、 [Container Issues](コンテナーの問題) の各オプションの情報を調べます。
+次に、デプロイ ログとアプリ ログの両方で、エラー メッセージが出力されていないかを調べます。 アプリのデプロイや起動を妨げる特定の問題が、これらのログによって明らかになることが少なくありません。 たとえば、requirements.txt ファイルがプロジェクトのルート フォルダーに存在しない場合やファイル名に誤りがある場合は、ビルドに失敗する可能性があります。
+具体的な問題の詳細なガイダンスについては、次のセクションを参照してください。
+アプリが表示されない - 既定のアプリが表示される
+アプリが表示されない - "サービスを利用できません" というメッセージ
+setup.py または requirements.txt が見つからない
+スタートアップ時の ModuleNotFoundError
+SSH セッションで、入力したパスワードが表示されない
+SSH セッションで、コマンドが途切れたように表示される
+Django アプリに静的資産が表示されない
+致命的: SSL 接続が必要
+アプリが表示されない
+自分のアプリ コードをデプロイした後に既定のアプリが表示される。 既定のアプリは、アプリ コードが App Service にデプロイされていない場合、またはアプリ コードが App Service によって検出されず、代わりに既定のアプリが実行された場合に表示されます。
+App Service を再起動し、15 から 20 秒待って、アプリをもう一度確認します。
+Windows ベースのインスタンスではなく、App Service for Linux が使用されていることを確認してください。 Azure CLI から az webapp show --resource-group <resource-group-name> --name <app-name> --query kind コマンドを実行します。<resource-group-name> と <app-name> は適宜置き換えてください。 出力として app,linux が表示されるはずです。それ以外の場合は、App Service を再作成し、Linux を選択してください。
+SSH を使用して App Service コンテナーに直接接続し、ファイルが site/wwwroot に存在することを確認します。 ファイルが存在しない場合は、次の手順を実行します。
+SCM_DO_BUILD_DURING_DEPLOYMENT という名前のアプリ設定を作成し、その値を 1 とします。コードを再デプロイして、数分待ってから、再度アプリにアクセスを試みます。 アプリ設定の作成の詳細については、「Azure portal で App Service アプリを構成する」を参照してください。
+デプロイ プロセスを確認し、デプロイ ログをチェックしてエラーがあれば修正し、アプリを再デプロイします。
+ファイルが存在する場合は、お客様固有のスタートアップ ファイルを App Service が識別できていません。 Django または Flask に関して App Service で想定されているとおりにお客様のアプリが構造化されていることをチェックします。または、カスタム スタートアップ コマンドを使用します。
+ブラウザーに "サービスは利用できません" というメッセージが表示される。 ブラウザーは App Service からの応答を待ってタイムアウトしました。これは、App Service によって Gunicorn サーバーが起動されたものの、アプリ自体が起動しなかったことを示しています。 この状況は、Gunicorn の引数が正しくないか、アプリのコードにエラーがあることを示しています。
+ブラウザーを最新の情報に更新します (特に、お客様が App Service プランの最も低い価格レベルを使用している場合)。 たとえば、無料のレベルを使用しているときは、アプリの起動にかかる時間が長くなることがあります。その場合、ブラウザーを最新の情報に更新すると、応答が速くなります。
+Django または Flask に関して App Service で想定されているとおりにお客様のアプリが構造化されていることをチェックします。または、カスタム スタートアップ コマンドを使用します。
+アプリ ログ ストリームにエラー メッセージがないか調べます。 このログには、アプリ コードのエラーがすべて表示されます。
+setup.py または requirements.txt が見つからない
+ログ ストリームに "Could not find setup.py or requirements.txt; Not running pip install." (setup.py または requirements.txt が見つかりませんでした; pip install が実行されていません。) と表示される。 Oryx のビルド プロセスで、requirements.txt ファイルの検出が失敗しました。
+SSH を介して Web アプリのコンテナーに接続し、requirements.txt が正しい名前になっていることと site/wwwroot の直下に存在することを確認します。 存在しない場合は、ファイルが自分のリポジトリに存在していて、自分のデプロイに含まれている場所を作ります。 別のフォルダーに存在する場合は、それをルートに移動させてください。
+アプリ起動時の ModuleNotFoundError
+ModuleNotFoundError: No module named 'example' のようなエラーが表示される場合、これは Python の起動時に 1 つ以上のモジュールが見つからなかったことを意味します。 これは、コードを使用して仮想環境をデプロイする場合によく発生します。 仮想環境は移植可能ではないため、アプリケーション コードを使用して仮想環境をデプロイしないでください。 代わりに、Oryx を使用して仮想環境を作成し、アプリ設定 SCM_DO_BUILD_DURING_DEPLOYMENT を作成し、それを 1 に設定して、Web アプリにパッケージをインストールします。 こうすることで、App Service にデプロイするたびに、Oryx によってパッケージが強制的にインストールされます。 詳細については、仮想環境の移植性に関するこの記事を参照してください。
+その他の問題
+SSH セッションで、入力したパスワードが表示されない: SSH セッションでは、セキュリティ上の理由により、入力中のパスワードは非表示になります。 ただし文字は記録されているので、通常どおりにパスワードを入力し、終わったら Enter キーを押してください。
+SSH セッションで、コマンドが途切れたように表示される: エディターでコマンドのテキストが折り返されないことがありますが、その場合でも正しく実行されます。
+Django アプリに静的資産が表示されない: whitenoise モジュールを有効にしていることを確認してください。
+"Fatal SSL Connection is Required (致命的: SSL 接続が必要です)" というメッセージが表示される: アプリ内からリソース (データベースなど) へのアクセスに使用したユーザー名とパスワードを確認してください。
+次のステップ
+
+
+クイックスタート: Azure App Service on Linux を使用して Python アプリを作成する
+2020/11/10
+
+
+フレームワークの選択
+このクイック スタートでは、Azure のスケーラビリティに優れた自己適用型の Web ホスティング サービスである App Service on Linux に、Python Web アプリをデプロイします。 Mac、Linux、または Windows コンピューター上でローカル Azure コマンドライン インターフェイス (CLI) を使用して、Flask または Django のいずれかのフレームワークを使用したサンプルをデプロイします。 構成する Web アプリでは、App Service の Free レベルを使用するため、この記事の中で料金が発生することはありません。
+ ヒント
+
+Visual Studio Code の使用を希望する場合は、 Visual Studio Code App Service のクイックスタート に従ってください。
+初期環境を設定する
+アクティブなサブスクリプションが含まれる Azure アカウントを用意します。 無料でアカウントを作成できます。
+Python 3.6 以降をインストールします。
+Azure CLI 2.0.80 以降をインストールします。それを任意のシェルから使用してコマンドを実行することで、Azure リソースのプロビジョニングと構成を行います。
+ターミナル ウィンドウを開き、Python のバージョンが 3.6 以降であることを確認します。
+Bash
+PowerShell
+Cmd
+Bash
+
+コピー
+python3 --version
+Azure CLI のバージョンが 2.0.80 以降であることを確認します。
+Azure CLI
+
+コピー
+az --version
+次に CLI から Azure にサインインします。
+Azure CLI
+
+コピー
+az login
+このコマンドを実行すると、お客様の資格情報を収集するためにブラウザーが開かれます。 コマンドが終了すると、ご利用のサブスクリプションに関する情報を含んだ JSON 出力が表示されます。
+サインイン後は、Azure CLI を使用して Azure コマンドを実行して、サブスクリプション内のリソースを操作することができます。
+問題がある場合は、 お知らせください。
+サンプルを複製する
+次のコマンドを使用してサンプル リポジトリを複製し、サンプル フォルダーに移動します (git をまだインストールしていない場合は、git をインストールします)。
+terminal
+
+コピー
+git clone https://github.com/Azure-Samples/python-docs-hello-world
+このサンプルには、Azure App Service がアプリの起動時に認識するフレームワーク固有のコードが含まれています。 詳細については、「コンテナーのスタートアップ プロセス」を参照してください。
+問題がありますか。 お知らせください。
+サンプルを実行する
+python-docs-hello-world フォルダーに移動します。
+terminal
+
+コピー
+cd python-docs-hello-world
+仮想環境を作成し、依存関係をインストールします。
+Bash
+PowerShell
+Cmd
+Bash
+
+コピー
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+"[Errno 2] そのようなファイルまたはディレクトリはありません: 'requirements.txt'。" と表示された場合は、python-docs-hello-world フォルダーを開いていることを確認してください。
+開発サーバーを実行します。
+terminal
+
+コピー
+flask run
+既定では、サーバーによって、アプリのエントリ モジュールが、サンプルで使用されている app.py 内にあると想定されています
+別のモジュール名を使用する場合は、FLASK_APP 環境変数をその名前に設定します。
+エラー "Could not locate a Flask application. You did not provide the 'FLASK_APP' environment variable, and a 'wsgi.py' or 'app.py' module was not found in the current directory. (Flask アプリケーションが見つかりませんでした。"FLASK_APP" 環境変数を指定しておらず、"wsgi.py" または "app.py" モジュールが現在のディレクトリに見つかりませんでした。) が発生した場合は、サンプルが含まれている python-docs-hello-world フォルダーにいることを確認してください。
+Web ブラウザーを開き、http://localhost:5000/ のサンプル アプリに移動します。 アプリに、Hello World! というメッセージが表示されます。
+サンプル Python アプリをローカルで実行する
+
+ターミナル ウィンドウで Ctrl + C キーを押して、開発サーバーを終了します。
+問題がありますか。 お知らせください。
+サンプルのデプロイ
+az webapp up コマンドを使用して、ローカル フォルダー (python-docs-hello-world) にコードをデプロイします。
+Azure CLI
+
+コピー
+az webapp up --sku B1 --name <app-name>
+az コマンドが認識されない場合は、「初期環境を設定する」の説明に従って Azure CLI がインストールされていることを確認してください。
+webapp コマンドが認識されない場合、それはご利用の Azure CLI のバージョンが 2.0.80 以上だからです。 そうでない場合は、最新バージョンをインストールしてください。
+<app_name> を Azure 全体で一意の名前で置き換えます ("有効な文字は、a-z、0-9、および - です")。 会社名とアプリ識別子を組み合わせて使用すると、適切なパターンになります。
+--sku B1 引数により、Basic 価格レベルで Web アプリが作成され、時間単位のわずかなコストが発生します。 より高速な Premium レベルを使用するには、この引数を省略します。
+必要に応じて、引数 --location <location-name> を含めることができます。ここで、<location_name> は利用可能な Azure リージョンです。 az account list-locations コマンドを実行すると、お使いの Azure アカウントで使用可能なリージョンの一覧を取得できます。
+"Could not auto-detect the runtime stack of your app (アプリのランタイム スタックを自動検出できませんでした)" というエラーが表示された場合は、requirements.txt ファイルがある python-docs-hello-world フォルダー (Flask) または python-docs-hello-django フォルダー (Django) でコマンドを実行していることを確認してください。 (GitHub の az webapp up を使用して自動検出の問題をトラブルシューティングする方法に関するページを参照してください。)
+コマンドが完了するまでに数分かかる場合があります。 実行中には、リソース グループ、App Service プラン、およびホスティング アプリの作成、ログ記録の構成、ZIP デプロイの実行に関するメッセージが表示されます。 次に、"http://<app-name>.azurewebsites.net でアプリを起動することができます" という内容のメッセージが表示されます。これは、Azure 上のアプリの URL です。
+az webapp up コマンドの出力例
+
+問題がありますか。 まず、トラブルシューティング ガイドを参照し、それでも解決しない場合はお知らせください。
+ 注意
+
+az webapp up コマンドは、次の処理を実行します。
+既定のリソース グループを作成する。
+既定の App Service プランを作成する。
+指定された名前でアプリを作成する。
+現在の作業ディレクトリからアプリにファイルを zip してデプロイする。
+アプリの参照
+URL http://<app-name>.azurewebsites.net を使って、お使いの Web ブラウザーでデプロイされたアプリケーションを参照します。 アプリが起動するまでに 1 から 2 分かかる場合があるため、既定のアプリ ページが表示される場合は、しばらく待ってからブラウザーを更新してください。
+Python サンプル コードによって、App Service 内で、組み込みのイメージを使用して、Linux コンテナーが実行されています。
+サンプル Python アプリを Azure で実行する
+
+お疲れさまでした。 App Service に Python アプリをデプロイすることができました。
+問題がありますか。 まず、トラブルシューティング ガイドを参照し、それでも解決しない場合はお知らせください。
+更新の再デプロイ
+このセクションでは、小さなコード変更を行ってから、コードを Azure に再デプロイします。 このコード変更には、次のセクションで使用するログ出力を生成するための print ステートメントが含まれます。
+エディターで app.py を開き、次のコードに一致するように hello 関数を更新します。
+Python
+
+コピー
+def hello():
+    print("Handling request to home page.")
+    return "Hello, Azure!"
+変更を保存してから、もう一度 az webapp up コマンドを使用してアプリを再デプロイします。
+Azure CLI
+
+コピー
+az webapp up
+このコマンドでは、 .azure/config ファイルにローカルでキャッシュされている値 (アプリ名、リソース グループ、App Service プランなど) を使用します。
+デプロイが完了すると、http://<app-name>.azurewebsites.net が開かれたブラウザー ウィンドウに戻ります。 ページを最新の情報に更新すると、変更されたメッセージが表示されます。
+更新したサンプル Python アプリを Azure で実行する
+
+問題がありますか。 まず、トラブルシューティング ガイドを参照し、それでも解決しない場合はお知らせください。
+ ヒント
+
+Visual Studio Code には、Python と Azure App Service 用の強力な拡張機能が用意されています。これを使うと、App Service に Python Web アプリをデプロイするプロセスが簡単になります。 詳細については、Visual Studio Code から App Service への Python アプリのデプロイに関する記事をご覧ください。
+ログのストリーミング
+アプリ、およびそれを実行するコンテナー内から生成されたコンソール ログに、アクセスすることができます。 ログには、print ステートメントを使って生成されたすべての出力が含まれます。
+ログをストリーミングするには、az webapp log tail コマンドを実行します。
+Azure CLI
+
+コピー
+az webapp log tail
+また、az webapp up コマンドに --logs パラメーターを指定して、デプロイ時にログ ストリームを自動的に開くこともできます。
+ブラウザーでアプリを最新の情報に更新して、コンソール ログを生成します。これには、アプリに対する HTTP 要求に関するメッセージが含まれています。 すぐに出力が表示されない場合は、30 秒後に再試行してください。
+https://<app-name>.scm.azurewebsites.net/api/logs/docker で、ブラウザーからログ ファイルを検査することもできます。
+ログ ストリーミングを任意のタイミングで停止するには、ターミナルで Ctrl + C キーを押します。
+問題がありますか。 まず、トラブルシューティング ガイドを参照し、それでも解決しない場合はお知らせください。
+Azure アプリの管理
+Azure portal に移動し、お客様が作成したアプリを管理します。 [App Services] を検索して選択します。
+Azure portal で App Services に移動する
+
+使用する Azure アプリの名前を選択します。
+Azure portal で App Services の Python アプリに移動する
+
+アプリを選択すると [概要] ページが開きます。ここでは、参照、停止、開始、再開、削除のような基本的な管理タスクを行うことができます。
+Azure portal の [概要] ページで Python アプリを管理する
+
+App Service のメニューには、アプリを構成するためのさまざまなページが用意されています。
+問題がありますか。 まず、トラブルシューティング ガイドを参照し、それでも解決しない場合はお知らせください。
+リソースをクリーンアップする
+前の手順では、リソース グループ内に Azure リソースを作成しました。 リソース グループには、お客様の場所に応じて "appsvc_rg_Linux_CentralUS" のような名前が付いています。 Web アプリを実行し続けると、継続的なコストが発生します (「App Service の価格」をご覧ください)。
+今後これらのリソースが不要である場合は、次のコマンドを実行してリソース グループを削除します。
+Azure CLI
+
+コピー
+az group delete --no-wait
+このコマンドでは、 azure/config ファイルにキャッシュされているリソース グループ名を使用します。
+--no-wait 引数を使用すると、操作が完了する前にコマンドから戻ることができます。
+問題がありますか。 お知らせください。
+次のステップ
+
+

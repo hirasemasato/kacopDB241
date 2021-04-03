@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+location.href = '/K000_index' ;
+}
+function cmd_update(){
+    location.href = '/K000_update/{{ K000.MENUID }}' ;
+}
+</script>
+
+<h2>[K000_MENU][詳細]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+<input type='button' name='link' value='編集' onclick='cmd_update()'>
+
+<br>
+
+<table border=1>
+    <tr>
+        <th>MENUID</th>
+        <td>{{ K000.MENUID }}</td>
+    </tr>
+    <tr>
+        <th>MENUNO</th>
+        <td>{{ K000.MENUNO }}</td>
+    </tr>
+    <tr>
+        <th>MENUNAME</th>
+        <td>{{ K000.MENUNAME }}</td>
+    </tr>
+    <tr>
+        <th>HREF</th>
+        <td>{{ K000.HREF }}</td>
+    </tr>
+    <tr>
+        <th>MEMO</th>
+        <td>{{ K000.MEMO }}</td>
+    </tr>
+    <tr>
+        <th>ENABLED</th>
+        <td>{{ K000.ENABLED }}</td>
+    </tr>
+    <tr>
+        <th>CATEGORY</th>
+        <td>{{ K000.CATEGORY }}</td>
+    </tr>
+    <tr>
+        <th>SECURITYLEVEL</th>
+        <td>{{ K000.SECURITYLEVEL }}</td>
+    </tr>
+</table>
+
+{% endblock %}
+

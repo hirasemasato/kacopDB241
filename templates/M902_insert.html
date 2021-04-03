@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+history.back();
+}
+</script>
+
+<h2>[M902_User登録][新規]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+
+<div class='form'>
+    <form action='/M902_insert' method='POST'>
+
+        <table border=1>
+            <tr>
+                <th><label for='UserID'>UserID</label></th>
+                <td><input type='text' name='UserID'></td>
+            </tr>
+            <tr>
+                <th><label for='Class'>Class</label></th>
+                <td><input type='text' name='Class'></td>
+            </tr>
+            <tr>
+                <th><label for='PCID'>PCID</label></th>
+                <td><input type='text' name='PCID'></td>
+            </tr>
+            <tr>
+                <th><label for='UserName'>UserName</label></th>
+                <td><input type='text' name='UserName'></td>
+            </tr>
+            <tr>
+                <th><label for='登録日'>登録日</label></th>
+                <td><input type='text' name='登録日'></td>
+            </tr>
+            <tr>
+                <th><label for='修正日'>修正日</label></th>
+                <td><input type='text' name='修正日'></td>
+            </tr>
+            <tr>
+                <th><label for='作成'>作成</label></th>
+                <td><input type='text' name='作成'></td>
+            </tr>
+            <tr>
+                <th><label for='登録'>登録</label></th>
+                <td><input type='text' name='登録'></td>
+            </tr>
+            <tr>
+                <th><label for='削除'>削除</label></th>
+                <td><input type='text' name='削除'></td>
+            </tr>
+            <tr>
+                <th><label for='KK'>KK</label></th>
+                <td><input type='text' name='KK'></td>
+            </tr>
+            <tr>
+                <th><label for='SV'>SV</label></th>
+                <td><input type='text' name='SV'></td>
+            </tr>
+        </table>
+
+        <input type='submit' value='送信'>
+    </form>
+</div>
+
+{% endblock %}
+

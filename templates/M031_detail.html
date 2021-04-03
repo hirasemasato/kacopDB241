@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+location.href = '/M031_index' ;
+}
+function cmd_update(){
+    location.href = '/M031_update/{{ M031.社員ID }}' ;
+}
+</script>
+
+<h2>[M031_社員][詳細]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+<input type='button' name='link' value='編集' onclick='cmd_update()'>
+
+<br>
+
+<table border=1>
+    <tr>
+        <th>社員ID</th>
+        <td>{{ M031.社員ID }}</td>
+    </tr>
+    <tr>
+        <th>社員No</th>
+        <td>{{ M031.社員No }}</td>
+    </tr>
+    <tr>
+        <th>社員名</th>
+        <td>{{ M031.社員名 }}</td>
+    </tr>
+    <tr>
+        <th>ふりがな</th>
+        <td>{{ M031.ふりがな }}</td>
+    </tr>
+    <tr>
+        <th>表示</th>
+        <td>{{ M031.表示 }}</td>
+    </tr>
+    <tr>
+        <th>PCID</th>
+        <td>{{ M031.PCID }}</td>
+    </tr>
+    <tr>
+        <th>UserName</th>
+        <td>{{ M031.UserName }}</td>
+    </tr>
+    <tr>
+        <th>登録日</th>
+        <td>{{ M031.登録日 }}</td>
+    </tr>
+    <tr>
+        <th>修正日</th>
+        <td>{{ M031.修正日 }}</td>
+    </tr>
+    <tr>
+        <th>作成</th>
+        <td>{{ M031.作成 }}</td>
+    </tr>
+    <tr>
+        <th>登録</th>
+        <td>{{ M031.登録 }}</td>
+    </tr>
+    <tr>
+        <th>削除</th>
+        <td>{{ M031.削除 }}</td>
+    </tr>
+    <tr>
+        <th>KK</th>
+        <td>{{ M031.KK }}</td>
+    </tr>
+    <tr>
+        <th>SV</th>
+        <td>{{ M031.SV }}</td>
+    </tr>
+</table>
+
+{% endblock %}
+

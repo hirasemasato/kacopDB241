@@ -1,0 +1,13 @@
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+tr:hover {
+background: steelblue none;
+color: white;
+}
+td:hover {
+background: steelblue none;
+color: white;
+}

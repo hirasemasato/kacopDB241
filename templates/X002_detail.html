@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+location.href = '/X002_index' ;
+}
+function cmd_update(){
+    location.href = '/X002_update/{{ X002.X002ID }}' ;
+}
+</script>
+
+<h2>[X002_FormLog][詳細]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+<input type='button' name='link' value='編集' onclick='cmd_update()'>
+
+<br>
+
+<table border=1>
+    <tr>
+        <th>X002ID</th>
+        <td>{{ X002.X002ID }}</td>
+    </tr>
+    <tr>
+        <th>日付</th>
+        <td>{{ X002.日付 }}</td>
+    </tr>
+    <tr>
+        <th>TickCount</th>
+        <td>{{ X002.TickCount }}</td>
+    </tr>
+    <tr>
+        <th>PCID</th>
+        <td>{{ X002.PCID }}</td>
+    </tr>
+    <tr>
+        <th>UserName</th>
+        <td>{{ X002.UserName }}</td>
+    </tr>
+    <tr>
+        <th>Version</th>
+        <td>{{ X002.Version }}</td>
+    </tr>
+    <tr>
+        <th>Mode</th>
+        <td>{{ X002.Mode }}</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>{{ X002.Description }}</td>
+    </tr>
+    <tr>
+        <th>ST</th>
+        <td>{{ X002.ST }}</td>
+    </tr>
+    <tr>
+        <th>ID</th>
+        <td>{{ X002.ID }}</td>
+    </tr>
+    <tr>
+        <th>KK</th>
+        <td>{{ X002.KK }}</td>
+    </tr>
+    <tr>
+        <th>SV</th>
+        <td>{{ X002.SV }}</td>
+    </tr>
+</table>
+
+{% endblock %}
+

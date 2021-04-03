@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+
+thead, tbody {
+display: block;
+}
+
+tbody {
+overflow: scroll;
+height: 600px;
+}
+
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+padding: 5px;
+}
+
+tr:hover {
+background: steelblue none;
+color: white;
+}
+
+td:hover {
+background: steelblue none;
+color: white;
+padding: 5px;
+}
+
+.col000 {width: 500px;}
+.col001 {width: 500px;}
+.col002 {width: 100px;}
+.col003 {width: 100px;}
+.col004 {width: 500px;}
+.col005 {width: 500px;}
+.col006 {width: 100px;}
+.col007 {width: 500px;}
+.col008 {width: 100px;}
+.col009 {width: 100px;}
+.col010 {width: 100px;}
+.col011 {width: 100px;}
+
+</style>
+<script>
+function cmd_return(){
+location.href = '/' ;
+}
+function cmd_insert(){
+location.href = '/X002_insert' ;
+}
+function import_csv(){
+location.href = '/X002_importcsv' ;
+}
+function output_json(){
+location.href = '/X002_outputjson' ;
+}
+</script>
+
+<h2>[X002_FormLog]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+<input type='button' name='link' value='新規' onclick='cmd_insert()'>
+<input type='button' name='link' value='csv入力' onclick='import_csv()'>
+<input type='button' name='link' value='json出力' onclick='output_json()'>
+<br>
+
+<table border=1>
+    <thead>
+    <tr>
+        <th class='col000'>X002ID</th>
+        <th class='col001'>日付</th>
+        <th class='col002'>TickCount</th>
+        <th class='col003'>PCID</th>
+        <th class='col004'>UserName</th>
+        <th class='col005'>Version</th>
+        <th class='col006'>Mode</th>
+        <th class='col007'>Description</th>
+        <th class='col008'>ST</th>
+        <th class='col009'>ID</th>
+        <th class='col010'>KK</th>
+        <th class='col011'>SV</th>
+    </tr>
+    </thead>
+        <tbody>
+        {% for row in rows %}
+        <tr onClick='location.href="/X002_detail/{{ row.X002ID }}"'>
+            <td class='col000'> {{ row.X002ID }}</td>
+            <td class='col001'> {{ row.日付 }}</td>
+            <td class='col002'> {{ row.TickCount }}</td>
+            <td class='col003'> {{ row.PCID }}</td>
+            <td class='col004'> {{ row.UserName }}</td>
+            <td class='col005'> {{ row.Version }}</td>
+            <td class='col006'> {{ row.Mode }}</td>
+            <td class='col007'> {{ row.Description }}</td>
+            <td class='col008'> {{ row.ST }}</td>
+            <td class='col009'> {{ row.ID }}</td>
+            <td class='col010'> {{ row.KK }}</td>
+            <td class='col011'> {{ row.SV }}</td>
+        </tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% endblock %}
+

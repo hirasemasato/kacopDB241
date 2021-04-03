@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+history.back();
+}
+</script>
+
+<h2>[ZIP2_都市名登録][新規]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+
+<div class='form'>
+    <form action='/ZIP2_insert' method='POST'>
+
+        <table border=1>
+            <tr>
+                <th><label for='県No'>県No</label></th>
+                <td><input type='text' name='県No'></td>
+            </tr>
+            <tr>
+                <th><label for='都市No'>都市No</label></th>
+                <td><input type='text' name='都市No'></td>
+            </tr>
+            <tr>
+                <th><label for='都市名'>都市名</label></th>
+                <td><input type='text' name='都市名'></td>
+            </tr>
+            <tr>
+                <th><label for='ふりがな'>ふりがな</label></th>
+                <td><input type='text' name='ふりがな'></td>
+            </tr>
+            <tr>
+                <th><label for='変更日'>変更日</label></th>
+                <td><input type='text' name='変更日'></td>
+            </tr>
+            <tr>
+                <th><label for='変更後都市名'>変更後都市名</label></th>
+                <td><input type='text' name='変更後都市名'></td>
+            </tr>
+            <tr>
+                <th><label for='変更後ふりがな'>変更後ふりがな</label></th>
+                <td><input type='text' name='変更後ふりがな'></td>
+            </tr>
+            <tr>
+                <th><label for='都市ID'>都市ID</label></th>
+                <td><input type='text' name='都市ID'></td>
+            </tr>
+        </table>
+
+        <input type='submit' value='送信'>
+    </form>
+</div>
+
+{% endblock %}
+

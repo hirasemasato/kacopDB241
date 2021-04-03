@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+history.back();
+}
+function cmd_delete(){
+    if (confirm('削除しますか？')==true)
+    location.href = '/ZIP1_delete/{{ ZIP1.県No }}' ;
+}
+</script>
+
+<h2>[ZIP1_県名][詳細][編集]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+<input type='button' name='link' value='削除' onclick='cmd_delete()'>
+<br>
+
+<div class='form'>
+    <form action='/ZIP1_update/{{ ZIP1.県No }}' method='POST'>
+
+        <table border=1>
+            <tr>
+                <th><label for='県No'>県No</label></th>
+                <td><input type='text' name='県No' value={{ ZIP1.県No }}></td>
+            </tr>
+            <tr>
+                <th><label for='検索文字'>検索文字</label></th>
+                <td><input type='text' name='検索文字' value={{ ZIP1.検索文字 }}></td>
+            </tr>
+            <tr>
+                <th><label for='県名'>県名</label></th>
+                <td><input type='text' name='県名' value={{ ZIP1.県名 }}></td>
+            </tr>
+            <tr>
+                <th><label for='県名除外'>県名除外</label></th>
+                <td><input type='text' name='県名除外' value={{ ZIP1.県名除外 }}></td>
+            </tr>
+            <tr>
+                <th><label for='地価指数'>地価指数</label></th>
+                <td><input type='text' name='地価指数' value={{ ZIP1.地価指数 }}></td>
+            </tr>
+        </table>
+
+        <input type='submit' value='送信'>
+    </form>
+</div>
+
+
+{% endblock %}
+

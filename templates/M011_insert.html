@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+history.back();
+}
+</script>
+
+<h2>[M011_顧客登録][新規]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+
+<div class='form'>
+    <form action='/M011_insert' method='POST'>
+
+        <table border=1>
+            <tr>
+                <th><label for='顧客ID'>顧客ID</label></th>
+                <td><input type='text' name='顧客ID'></td>
+            </tr>
+            <tr>
+                <th><label for='顧客No'>顧客No</label></th>
+                <td><input type='text' name='顧客No'></td>
+            </tr>
+            <tr>
+                <th><label for='顧客名'>顧客名</label></th>
+                <td><input type='text' name='顧客名'></td>
+            </tr>
+            <tr>
+                <th><label for='ふりがな'>ふりがな</label></th>
+                <td><input type='text' name='ふりがな'></td>
+            </tr>
+            <tr>
+                <th><label for='郵便番号'>郵便番号</label></th>
+                <td><input type='text' name='郵便番号'></td>
+            </tr>
+            <tr>
+                <th><label for='住所1'>住所1</label></th>
+                <td><input type='text' name='住所1'></td>
+            </tr>
+            <tr>
+                <th><label for='住所2'>住所2</label></th>
+                <td><input type='text' name='住所2'></td>
+            </tr>
+            <tr>
+                <th><label for='TEL'>TEL</label></th>
+                <td><input type='text' name='TEL'></td>
+            </tr>
+            <tr>
+                <th><label for='FAX'>FAX</label></th>
+                <td><input type='text' name='FAX'></td>
+            </tr>
+            <tr>
+                <th><label for='備考'>備考</label></th>
+                <td><input type='text' name='備考'></td>
+            </tr>
+            <tr>
+                <th><label for='表示'>表示</label></th>
+                <td><input type='text' name='表示'></td>
+            </tr>
+            <tr>
+                <th><label for='PCID'>PCID</label></th>
+                <td><input type='text' name='PCID'></td>
+            </tr>
+            <tr>
+                <th><label for='UserName'>UserName</label></th>
+                <td><input type='text' name='UserName'></td>
+            </tr>
+            <tr>
+                <th><label for='登録日'>登録日</label></th>
+                <td><input type='text' name='登録日'></td>
+            </tr>
+            <tr>
+                <th><label for='修正日'>修正日</label></th>
+                <td><input type='text' name='修正日'></td>
+            </tr>
+            <tr>
+                <th><label for='作成'>作成</label></th>
+                <td><input type='text' name='作成'></td>
+            </tr>
+            <tr>
+                <th><label for='登録'>登録</label></th>
+                <td><input type='text' name='登録'></td>
+            </tr>
+            <tr>
+                <th><label for='削除'>削除</label></th>
+                <td><input type='text' name='削除'></td>
+            </tr>
+            <tr>
+                <th><label for='KK'>KK</label></th>
+                <td><input type='text' name='KK'></td>
+            </tr>
+            <tr>
+                <th><label for='SV'>SV</label></th>
+                <td><input type='text' name='SV'></td>
+            </tr>
+        </table>
+
+        <input type='submit' value='送信'>
+    </form>
+</div>
+
+{% endblock %}
+

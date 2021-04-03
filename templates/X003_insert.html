@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+history.back();
+}
+</script>
+
+<h2>[X003_LogIn登録][新規]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+
+<div class='form'>
+    <form action='/X003_insert' method='POST'>
+
+        <table border=1>
+            <tr>
+                <th><label for='X003ID'>X003ID</label></th>
+                <td><input type='text' name='X003ID'></td>
+            </tr>
+            <tr>
+                <th><label for='日付'>日付</label></th>
+                <td><input type='text' name='日付'></td>
+            </tr>
+            <tr>
+                <th><label for='PCID'>PCID</label></th>
+                <td><input type='text' name='PCID'></td>
+            </tr>
+            <tr>
+                <th><label for='UserName'>UserName</label></th>
+                <td><input type='text' name='UserName'></td>
+            </tr>
+            <tr>
+                <th><label for='Version'>Version</label></th>
+                <td><input type='text' name='Version'></td>
+            </tr>
+            <tr>
+                <th><label for='KK'>KK</label></th>
+                <td><input type='text' name='KK'></td>
+            </tr>
+            <tr>
+                <th><label for='SV'>SV</label></th>
+                <td><input type='text' name='SV'></td>
+            </tr>
+        </table>
+
+        <input type='submit' value='送信'>
+    </form>
+</div>
+
+{% endblock %}
+

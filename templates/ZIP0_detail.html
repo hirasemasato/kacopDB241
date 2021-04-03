@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+location.href = '/ZIP0_index' ;
+}
+function cmd_update(){
+    location.href = '/ZIP0_update/{{ ZIP0.郵便番号 }}' ;
+}
+</script>
+
+<h2>[ZIP0_住所][詳細]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+<input type='button' name='link' value='編集' onclick='cmd_update()'>
+
+<br>
+
+<table border=1>
+    <tr>
+        <th>郵便番号</th>
+        <td>{{ ZIP0.郵便番号 }}</td>
+    </tr>
+    <tr>
+        <th>住所</th>
+        <td>{{ ZIP0.住所 }}</td>
+    </tr>
+    <tr>
+        <th>ふりがな</th>
+        <td>{{ ZIP0.ふりがな }}</td>
+    </tr>
+    <tr>
+        <th>県No</th>
+        <td>{{ ZIP0.県No }}</td>
+    </tr>
+    <tr>
+        <th>都市No</th>
+        <td>{{ ZIP0.都市No }}</td>
+    </tr>
+    <tr>
+        <th>全住所</th>
+        <td>{{ ZIP0.全住所 }}</td>
+    </tr>
+</table>
+
+{% endblock %}
+

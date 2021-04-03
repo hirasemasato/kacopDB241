@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+tr:hover {
+background: steelblue none;
+color: white;
+}
+td:hover {
+background: steelblue none;
+color: white;
+}
+.col000 {width: 080px;}
+.col001 {width: 400px;}
+.col002 {width: 800px;}
+.col003 {width: 100px;}
+.col004 {width: 100px;}
+.col005 {width: 100px;}
+.col006 {width: 100px;}
+.col007 {width: 100px;}
+.col008 {width: 100px;}
+.col009 {width: 100px;}
+.col010 {width: 100px;}
+</style>
+    
+<script>
+function staff_index(){
+location.href = "/m011_index" ;
+}
+</script>
+
+<h2>[システムメニュー]</h2>
+
+<input type="button" name="link" value="日常業務" onclick="cmd_update()">
+<input type="button" name="link" value="マスタ登録" onclick="staff_index()">
+<input type="button" name="link" value="ユーティティ" onclick="cmd_delete()">
+<input type="button" name="link" value="logout" onclick="cmd_delete()">
+<br>
+<table>
+    <thead>
+        <th class='col000'>No</th>
+        <th class='col001'>プログラム名</th>
+        <th class='col002'>備考</th>
+    </thead>
+    <tbody>
+    {% for row in rows %}
+    <tr onClick=location.href='{{ row["HREF"] }}'>
+    <td class='col000'> {{ row['MENUID'] }}</td>
+    <td class='col001'> {{ row['MENUNAME'] }}</td>
+    <td class='col002'> {{ row['MEMO'] }}</td>
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+
+
+
+{% endblock %}

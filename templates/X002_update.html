@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+history.back();
+}
+function cmd_delete(){
+    if (confirm('削除しますか？')==true)
+    location.href = '/X002_delete/{{ X002.X002ID }}' ;
+}
+</script>
+
+<h2>[X002_FormLog][詳細][編集]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+<input type='button' name='link' value='削除' onclick='cmd_delete()'>
+<br>
+
+<div class='form'>
+    <form action='/X002_update/{{ X002.X002ID }}' method='POST'>
+
+        <table border=1>
+            <tr>
+                <th><label for='X002ID'>X002ID</label></th>
+                <td><input type='text' name='X002ID' value={{ X002.X002ID }}></td>
+            </tr>
+            <tr>
+                <th><label for='日付'>日付</label></th>
+                <td><input type='text' name='日付' value={{ X002.日付 }}></td>
+            </tr>
+            <tr>
+                <th><label for='TickCount'>TickCount</label></th>
+                <td><input type='text' name='TickCount' value={{ X002.TickCount }}></td>
+            </tr>
+            <tr>
+                <th><label for='PCID'>PCID</label></th>
+                <td><input type='text' name='PCID' value={{ X002.PCID }}></td>
+            </tr>
+            <tr>
+                <th><label for='UserName'>UserName</label></th>
+                <td><input type='text' name='UserName' value={{ X002.UserName }}></td>
+            </tr>
+            <tr>
+                <th><label for='Version'>Version</label></th>
+                <td><input type='text' name='Version' value={{ X002.Version }}></td>
+            </tr>
+            <tr>
+                <th><label for='Mode'>Mode</label></th>
+                <td><input type='text' name='Mode' value={{ X002.Mode }}></td>
+            </tr>
+            <tr>
+                <th><label for='Description'>Description</label></th>
+                <td><input type='text' name='Description' value={{ X002.Description }}></td>
+            </tr>
+            <tr>
+                <th><label for='ST'>ST</label></th>
+                <td><input type='text' name='ST' value={{ X002.ST }}></td>
+            </tr>
+            <tr>
+                <th><label for='ID'>ID</label></th>
+                <td><input type='text' name='ID' value={{ X002.ID }}></td>
+            </tr>
+            <tr>
+                <th><label for='KK'>KK</label></th>
+                <td><input type='text' name='KK' value={{ X002.KK }}></td>
+            </tr>
+            <tr>
+                <th><label for='SV'>SV</label></th>
+                <td><input type='text' name='SV' value={{ X002.SV }}></td>
+            </tr>
+        </table>
+
+        <input type='submit' value='送信'>
+    </form>
+</div>
+
+
+{% endblock %}
+

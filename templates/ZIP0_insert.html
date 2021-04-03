@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+history.back();
+}
+</script>
+
+<h2>[ZIP0_住所登録][新規]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+
+<div class='form'>
+    <form action='/ZIP0_insert' method='POST'>
+
+        <table border=1>
+            <tr>
+                <th><label for='郵便番号'>郵便番号</label></th>
+                <td><input type='text' name='郵便番号'></td>
+            </tr>
+            <tr>
+                <th><label for='住所'>住所</label></th>
+                <td><input type='text' name='住所'></td>
+            </tr>
+            <tr>
+                <th><label for='ふりがな'>ふりがな</label></th>
+                <td><input type='text' name='ふりがな'></td>
+            </tr>
+            <tr>
+                <th><label for='県No'>県No</label></th>
+                <td><input type='text' name='県No'></td>
+            </tr>
+            <tr>
+                <th><label for='都市No'>都市No</label></th>
+                <td><input type='text' name='都市No'></td>
+            </tr>
+            <tr>
+                <th><label for='全住所'>全住所</label></th>
+                <td><input type='text' name='全住所'></td>
+            </tr>
+        </table>
+
+        <input type='submit' value='送信'>
+    </form>
+</div>
+
+{% endblock %}
+

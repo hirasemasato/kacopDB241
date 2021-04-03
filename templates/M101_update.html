@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+history.back();
+}
+function cmd_delete(){
+    if (confirm('削除しますか？')==true)
+    location.href = '/M101_delete/{{ M101.受注ID }}' ;
+}
+</script>
+
+<h2>[M101_受注][詳細][編集]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+<input type='button' name='link' value='削除' onclick='cmd_delete()'>
+<br>
+
+<div class='form'>
+    <form action='/M101_update/{{ M101.受注ID }}' method='POST'>
+
+        <table border=1>
+            <tr>
+                <th><label for='受注ID'>受注ID</label></th>
+                <td><input type='text' name='受注ID' value={{ M101.受注ID }}></td>
+            </tr>
+            <tr>
+                <th><label for='受注No'>受注No</label></th>
+                <td><input type='text' name='受注No' value={{ M101.受注No }}></td>
+            </tr>
+            <tr>
+                <th><label for='入力日付'>入力日付</label></th>
+                <td><input type='text' name='入力日付' value={{ M101.入力日付 }}></td>
+            </tr>
+            <tr>
+                <th><label for='日付'>日付</label></th>
+                <td><input type='text' name='日付' value={{ M101.日付 }}></td>
+            </tr>
+            <tr>
+                <th><label for='顧客検索'>顧客検索</label></th>
+                <td><input type='text' name='顧客検索' value={{ M101.顧客検索 }}></td>
+            </tr>
+            <tr>
+                <th><label for='顧客ID'>顧客ID</label></th>
+                <td><input type='text' name='顧客ID' value={{ M101.顧客ID }}></td>
+            </tr>
+            <tr>
+                <th><label for='社員検索'>社員検索</label></th>
+                <td><input type='text' name='社員検索' value={{ M101.社員検索 }}></td>
+            </tr>
+            <tr>
+                <th><label for='社員ID'>社員ID</label></th>
+                <td><input type='text' name='社員ID' value={{ M101.社員ID }}></td>
+            </tr>
+            <tr>
+                <th><label for='金額'>金額</label></th>
+                <td><input type='text' name='金額' value={{ M101.金額 }}></td>
+            </tr>
+            <tr>
+                <th><label for='備考'>備考</label></th>
+                <td><input type='text' name='備考' value={{ M101.備考 }}></td>
+            </tr>
+            <tr>
+                <th><label for='Status'>Status</label></th>
+                <td><input type='text' name='Status' value={{ M101.Status }}></td>
+            </tr>
+            <tr>
+                <th><label for='PCID'>PCID</label></th>
+                <td><input type='text' name='PCID' value={{ M101.PCID }}></td>
+            </tr>
+            <tr>
+                <th><label for='UserName'>UserName</label></th>
+                <td><input type='text' name='UserName' value={{ M101.UserName }}></td>
+            </tr>
+            <tr>
+                <th><label for='登録日'>登録日</label></th>
+                <td><input type='text' name='登録日' value={{ M101.登録日 }}></td>
+            </tr>
+            <tr>
+                <th><label for='修正日'>修正日</label></th>
+                <td><input type='text' name='修正日' value={{ M101.修正日 }}></td>
+            </tr>
+            <tr>
+                <th><label for='作成'>作成</label></th>
+                <td><input type='text' name='作成' value={{ M101.作成 }}></td>
+            </tr>
+            <tr>
+                <th><label for='登録'>登録</label></th>
+                <td><input type='text' name='登録' value={{ M101.登録 }}></td>
+            </tr>
+            <tr>
+                <th><label for='削除'>削除</label></th>
+                <td><input type='text' name='削除' value={{ M101.削除 }}></td>
+            </tr>
+            <tr>
+                <th><label for='KK'>KK</label></th>
+                <td><input type='text' name='KK' value={{ M101.KK }}></td>
+            </tr>
+            <tr>
+                <th><label for='SV'>SV</label></th>
+                <td><input type='text' name='SV' value={{ M101.SV }}></td>
+            </tr>
+        </table>
+
+        <input type='submit' value='送信'>
+    </form>
+</div>
+
+
+{% endblock %}
+

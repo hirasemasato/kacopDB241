@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+
+thead, tbody {
+display: block;
+}
+
+tbody {
+overflow: scroll;
+height: 600px;
+}
+
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+padding: 5px;
+}
+
+tr:hover {
+background: steelblue none;
+color: white;
+}
+
+td:hover {
+background: steelblue none;
+color: white;
+padding: 5px;
+}
+
+.col000 {width: 100px;}
+.col001 {width: 100px;}
+.col002 {width: 300px;}
+.col003 {width: 300px;}
+.col004 {width: 500px;}
+.col005 {width: 300px;}
+.col006 {width: 300px;}
+.col007 {width: 900px;}
+.col008 {width: 300px;}
+.col009 {width: 500px;}
+.col010 {width: 100px;}
+.col011 {width: 100px;}
+.col012 {width: 500px;}
+.col013 {width: 500px;}
+.col014 {width: 500px;}
+.col015 {width: 100px;}
+.col016 {width: 100px;}
+.col017 {width: 100px;}
+.col018 {width: 050px;}
+.col019 {width: 500px;}
+
+</style>
+<script>
+function cmd_return(){
+location.href = '/' ;
+}
+function cmd_insert(){
+location.href = '/M011_insert' ;
+}
+function import_csv(){
+location.href = '/M011_importcsv' ;
+}
+function output_json(){
+location.href = '/M011_outputjson' ;
+}
+</script>
+
+<h2>[M011_顧客]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+<input type='button' name='link' value='新規' onclick='cmd_insert()'>
+<input type='button' name='link' value='csv入力' onclick='import_csv()'>
+<input type='button' name='link' value='json出力' onclick='output_json()'>
+<br>
+
+<table border=1>
+    <thead>
+    <tr>
+        <th class='col000'>ID</th>
+        <th class='col001'>No</th>
+        <th class='col002'>顧客名</th>
+        <th class='col005'>住所1</th>
+        <th class='col007'>備考</th>
+    </tr>
+    </thead>
+        <tbody>
+        {% for row in rows %}
+        <tr onClick='location.href="/M011_detail/{{ row.顧客ID }}"'>
+            <td class='col000'> {{ row.顧客ID }}</td>
+            <td class='col001'> {{ row.顧客No }}</td>
+            <td class='col002'> {{ row.顧客名 }}</td>
+            <td class='col005'> {{ row.住所1 }}</td>
+            <td class='col007'> {{ row.備考 }}</td>
+        </tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% endblock %}
+

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+location.href = '/ZIP2_index' ;
+}
+function cmd_update(){
+    location.href = '/ZIP2_update/{{ ZIP2.県No }}' ;
+}
+</script>
+
+<h2>[ZIP2_都市名][詳細]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+<input type='button' name='link' value='編集' onclick='cmd_update()'>
+
+<br>
+
+<table border=1>
+    <tr>
+        <th>県No</th>
+        <td>{{ ZIP2.県No }}</td>
+    </tr>
+    <tr>
+        <th>都市No</th>
+        <td>{{ ZIP2.都市No }}</td>
+    </tr>
+    <tr>
+        <th>都市名</th>
+        <td>{{ ZIP2.都市名 }}</td>
+    </tr>
+    <tr>
+        <th>ふりがな</th>
+        <td>{{ ZIP2.ふりがな }}</td>
+    </tr>
+    <tr>
+        <th>変更日</th>
+        <td>{{ ZIP2.変更日 }}</td>
+    </tr>
+    <tr>
+        <th>変更後都市名</th>
+        <td>{{ ZIP2.変更後都市名 }}</td>
+    </tr>
+    <tr>
+        <th>変更後ふりがな</th>
+        <td>{{ ZIP2.変更後ふりがな }}</td>
+    </tr>
+    <tr>
+        <th>都市ID</th>
+        <td>{{ ZIP2.都市ID }}</td>
+    </tr>
+</table>
+
+{% endblock %}
+

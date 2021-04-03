@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+th {
+border:1px solid white;
+color:white;
+background-color: #696;
+}
+</style>
+
+<script>
+function cmd_return(){
+history.back();
+}
+</script>
+
+<h2>[K000_MENU登録][新規]</h2>
+<input type='button' name='link' value='戻る' onclick='cmd_return()'>
+
+<div class='form'>
+    <form action='/K000_insert' method='POST'>
+
+        <table border=1>
+            <tr>
+                <th><label for='MENUID'>MENUID</label></th>
+                <td><input type='text' name='MENUID'></td>
+            </tr>
+            <tr>
+                <th><label for='MENUNO'>MENUNO</label></th>
+                <td><input type='text' name='MENUNO'></td>
+            </tr>
+            <tr>
+                <th><label for='MENUNAME'>MENUNAME</label></th>
+                <td><input type='text' name='MENUNAME'></td>
+            </tr>
+            <tr>
+                <th><label for='HREF'>HREF</label></th>
+                <td><input type='text' name='HREF'></td>
+            </tr>
+            <tr>
+                <th><label for='MEMO'>MEMO</label></th>
+                <td><input type='text' name='MEMO'></td>
+            </tr>
+            <tr>
+                <th><label for='ENABLED'>ENABLED</label></th>
+                <td><input type='text' name='ENABLED'></td>
+            </tr>
+            <tr>
+                <th><label for='CATEGORY'>CATEGORY</label></th>
+                <td><input type='text' name='CATEGORY'></td>
+            </tr>
+            <tr>
+                <th><label for='SECURITYLEVEL'>SECURITYLEVEL</label></th>
+                <td><input type='text' name='SECURITYLEVEL'></td>
+            </tr>
+        </table>
+
+        <input type='submit' value='送信'>
+    </form>
+</div>
+
+{% endblock %}
+
