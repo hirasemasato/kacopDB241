@@ -18,7 +18,7 @@ format_date='%Y-%m-%d'
 app = Flask(__name__)
 
 def cn_open():
-    cn = sqlite3.connect('DB603DAT.db')
+    cn = sqlite3.connect('./DB603DAT.db')
     cn.isolation_level = None
     cn.row_factory = sqlite3.Row
     return cn
@@ -95,7 +95,7 @@ def get_primarykerfilter(ID):
     if not str.isdecimal(str(ID)):
         ID = -1
     wID = str(ID)
-    wfilter=' WHERE MENUID = ' + wID +' '
+    wfilter=' WHERE  = ' + wID +' '
     return wfilter
 
 def get_K000(ID):
@@ -112,7 +112,7 @@ def get_K000(ID):
 def get_K000_index():
     cn = cn_open()
     wsql = 'SELECT * FROM K000_MENU '
-    wsql+= 'ORDER BY  MENUID DESC '
+    wsql+= 'ORDER BY   DESC '
     cur = cn.execute(wsql)
     rows = cur.fetchall()
     return render_template('K000_index.html',rows = rows )
@@ -146,7 +146,7 @@ def post_K000_insert():
         )
     cn.execute(wsql,row)
     wsql = 'SELECT * FROM K000_MENU '
-    wsql+= 'ORDER BY  MENUID DESC '
+    wsql+= 'ORDER BY   DESC '
     cur = cn.execute(wsql)
     rows = cur.fetchall()
     return render_template('K000_index.html',rows = rows )
@@ -198,7 +198,7 @@ def get_K000_delete(ID):
     cn = cn_open()
     cn.execute(wsql)
     wsql = 'SELECT * FROM K000_MENU '
-    wsql+= 'ORDER BY  MENUID DESC '
+    wsql+= 'ORDER BY   DESC '
     cur = cn.execute(wsql)
     rows = cur.fetchall()
     return render_template('K000_index.html',rows = rows )
@@ -326,7 +326,7 @@ def get_K000_delete(ID):
 
 import sqlite3
         
-dbname = 'DB602DAT.db'
+dbname = './DB603DAT.db'
 cn = sqlite3.connect(dbname)
 cn.execute ('PRAGMA foreign_keys = 1')
 #cn.execute ('DROP TABLE  K000_MENU)

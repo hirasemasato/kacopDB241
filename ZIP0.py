@@ -18,7 +18,7 @@ format_date='%Y-%m-%d'
 app = Flask(__name__)
 
 def cn_open():
-    cn = sqlite3.connect('DBZIP.db')
+    cn = sqlite3.connect('./DBZIP.db')
     cn.isolation_level = None
     cn.row_factory = sqlite3.Row
     return cn
@@ -302,7 +302,7 @@ def get_ZIP0_delete(ID):
 
 import sqlite3
         
-dbname = 'DBZIP.db'
+dbname = './DBZIP.db'
 cn = sqlite3.connect(dbname)
 cn.execute ('PRAGMA foreign_keys = 1')
 #cn.execute ('DROP TABLE  ZIP0_住所)

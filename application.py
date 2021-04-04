@@ -462,22 +462,13 @@ def post_ZIP2_update(ID):
 def get_ZIP2_delete(ID):
     return ZIP2.get_ZIP2_index(ID)
 
-@app.route('/S001_sample')
-def get_S001_sample():
-    return '<h1>Hello</h1>'
-
-@app.route('/S002_sample')
-def get_S002_sample(user=''):
-    req = request.args
-    username = req.get('user')    
-    return render_template('S002_sample.html', user=username)
-
-@app.route('/S003_sample')
-def get_S003_sample(user=''):
-    req = request.args
-    username = req.get('user') 
-    html = "<h2> Hello {name} </h2>".format(name=username)
-    return html
  
 if __name__ == '__main__':
+    app.debug=True
+    app.run(host='0.0.0.0', port=5000)
+
+"""
+if __name__ == '__main__':
     app.run()
+
+"""

@@ -18,7 +18,7 @@ format_date='%Y-%m-%d'
 app = Flask(__name__)
 
 def cn_open():
-    cn = sqlite3.connect('DB603LCK.db')
+    cn = sqlite3.connect('./DB603LCK.db')
     cn.isolation_level = None
     cn.row_factory = sqlite3.Row
     return cn
@@ -335,7 +335,7 @@ def get_X001_delete(ID):
 
 import sqlite3
         
-dbname = 'DB603LCK.db'
+dbname = './DB603LCK.db'
 cn = sqlite3.connect(dbname)
 cn.execute ('PRAGMA foreign_keys = 1')
 #cn.execute ('DROP TABLE  X001_Lock)

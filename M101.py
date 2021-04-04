@@ -18,7 +18,7 @@ format_date='%Y-%m-%d'
 app = Flask(__name__)
 
 def cn_open():
-    cn = sqlite3.connect('DB603DAT.db')
+    cn = sqlite3.connect('./DB603DAT.db')
     cn.isolation_level = None
     cn.row_factory = sqlite3.Row
     return cn
@@ -458,7 +458,7 @@ def get_M101_delete(ID):
 
 import sqlite3
         
-dbname = 'DB603DAT.db'
+dbname = './DB603DAT.db'
 cn = sqlite3.connect(dbname)
 cn.execute ('PRAGMA foreign_keys = 1')
 #cn.execute ('DROP TABLE  M101_受注)
