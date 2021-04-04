@@ -6,7 +6,7 @@ import os
 import csv
 import json
 import sqlite3
-#import pandas as pd
+import pandas as pd
 import logging
 
 format_str = '%(asctime)s - %(process)d - %(thread)d - %(name)s - %(levelname)s - %(message)s'
@@ -208,7 +208,7 @@ def get_K000_delete(ID):
 def get_K000_importcsv():
     cn = cn_open()
     wsql=get_insert_sql()
-#    rows = pd.read_csv('K000.csv', encoding='cp932')
+    rows = pd.read_csv('K000.csv', encoding='cp932')
     for row in rows.values:
         print(row[0])
         cn.execute(wsql, row)
