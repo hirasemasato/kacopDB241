@@ -40,6 +40,9 @@ def Layer_pop():
     LayerStr.pop(LayerNum) 
 
 @app.route('/', methods=['GET'])
+def get__index():
+    return 'welcom hirase '
+
 def get_MENU_index():
     wsql = ' SELECT * FROM K000_MENU'
     wsql+= ' ORDER BY  MENUNO '
